@@ -9,6 +9,7 @@ use App\Http\Controllers\Carrito_comprasController;
 use App\Http\Controllers\CochesController;
 use App\Http\Controllers\ComprasController;
 use App\Http\Controllers\FavoritosController;
+use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\Linea_carritosController;
 use App\Http\Controllers\Linea_comprasController;
 use App\Http\Controllers\ProductosController;
@@ -58,7 +59,7 @@ Route::delete('/delAccesorio', [AccesoriosController::class, 'eliminarAccesorio'
 Route::post('/addCoche', [CochesController::class, 'crearCoche'])->name('addCoche');
 Route::post('/coche', [CochesController::class, 'verMostrarCoche'])->name('verCoche');
 Route::post('/editarCoche', [CochesController::class, 'verEditarCoche'])->name('ver.coche.editar');
-Route::put('/updateCoche', [CochesController::class, 'editarCoche'])->name('editar.coche');
+Route::post('/updateCoche', [CochesController::class, 'editarCoche'])->name('editar.coche');
 Route::post('/borrarCoche', [CochesController::class, 'verBorrarCoche'])->name('ver.coche.borrar');
 Route::delete('/delCoche', [CochesController::class, 'eliminarCoche'])->name('coche.borrar');
 
@@ -82,6 +83,15 @@ Route::delete('/deleteToCarrito', [Carrito_comprasController::class, 'eliminarLi
 Route::get('/misFavoritos', [FavoritosController::class, 'misFavoritos'])->name('misFavoritos');
 Route::post('/addFavorito', [FavoritosController::class, 'addToFavoritos'])->name('addToFavoritos');
 Route::delete('/deleteFavorito', [FavoritosController::class, 'removeToFavoritos'])->name('eliminarFavorito');
+Route::get('/rankingFavoritos', [FavoritosController::class, 'rankingFavoritos'])->name('mostrarRankingFavoritos');
+
+//CATEGORIAS
+Route::get('/categorias', [CategoriasController::class, 'mostrarCategorias'])->name('verCategorias');
+Route::post('/addCategoria', [CategoriasController::class, 'addToCategorias'])->name('addToCategorias');
+Route::delete('/removeCategoria', [CategoriasController::class, 'removeToCategorias'])->name('removeToCategorias');
+Route::put('/editCategoria', [CategoriasController::class, 'editarCategoria'])->name('editarCategoria');
+
+
 
 
 //USUARIOS
