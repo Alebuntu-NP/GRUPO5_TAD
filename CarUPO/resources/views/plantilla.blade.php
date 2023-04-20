@@ -58,10 +58,10 @@
                             <a class="nav-link text-white" href="{{route('mostrarCompras')}}">{{ __('messages.compras') }}</a>
                         </li>
                         <li class="nav-item justify-content-center d-flex">
-                            <a class="nav-link text-white" href="{{route('mostrarRankingFavoritos')}}">Favoritos</a>
+                            <a class="nav-link text-white" href="{{route('mostrarRankingFavoritos')}}">{{ __('messages.favoritos') }}</a>
                         </li>
                         <li class="nav-item justify-content-center d-flex">
-                            <a class="nav-link text-white" href="{{route('verCategorias')}}">Categorias</a>
+                            <a class="nav-link text-white" href="{{route('verCategorias')}}">{{ __('messages.categorias') }}</a>
                         </li>
                         @else
                         <li class="nav-item justify-content-center d-flex">
@@ -71,7 +71,7 @@
                             <a class="nav-link text-white" href="{{route('mostrarCarrito')}}">{{ __('messages.carrito') }}</a>
                         </li>                        
                         <li class="nav-item justify-content-center d-flex">
-                            <a class="nav-link text-white" href="{{ route('misFavoritos') }}">Mis favoritos</a>
+                            <a class="nav-link text-white" href="{{ route('misFavoritos') }}">{{ __('messages.misFavs') }}</a>
 
                         </li>
                         @endif
