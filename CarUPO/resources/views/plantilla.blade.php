@@ -57,14 +57,18 @@
                         <li class="nav-item justify-content-center d-flex">
                             <a class="nav-link text-white" href="{{route('mostrarCompras')}}">{{ __('messages.compras') }}</a>
                         </li>
+                        <li class="nav-item justify-content-center d-flex">
+                            <a class="nav-link text-white" href="{{route('mostrarRankingFavoritos')}}">Favoritos</a>
+                        </li>
+                        <li class="nav-item justify-content-center d-flex">
+                            <a class="nav-link text-white" href="{{route('verCategorias')}}">Categorias</a>
+                        </li>
                         @else
                         <li class="nav-item justify-content-center d-flex">
                             <a class="nav-link text-white" href="{{route('misCompras')}}">{{ __('messages.misCompras') }}</a>
                         </li>
                         <li class="nav-item justify-content-center d-flex">
-
                             <a class="nav-link text-white" href="{{route('mostrarCarrito')}}">{{ __('messages.carrito') }}</a>
-
                         </li>                        
                         <li class="nav-item justify-content-center d-flex">
                             <a class="nav-link text-white" href="{{ route('misFavoritos') }}">Mis favoritos</a>
