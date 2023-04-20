@@ -25,4 +25,7 @@ return [
     "pass" => "Password",
     "remember" => "Remember password",
     "olvidarPass" => "Forgot your password?",
+    "favoritos" => "Favorites",
+    "categorias" => "Categories",
+    "misFavs" => "My favorites",
 ];
