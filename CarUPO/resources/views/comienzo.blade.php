@@ -1,6 +1,15 @@
 @extends('plantilla')
 @section('contenido')
+@guest
+{{ app()->setLocale('es') }}
 
+@else
+@if (Auth::user()->language == 'Español')
+{{ app()->setLocale('es') }}
+@else
+{{ app()->setLocale('en') }}
+@endif
+@endguest
 <div class="container-lg my-3 col-xs-10 col-md-8 col-lg-8 col-xl-8">
     <div class="justify-content-center d-flex mb-3">
         <h1>CarUPO</h1>
@@ -8,20 +17,13 @@
 
     <div>
         <p>
-            Bienvenido/a a nuestra página de alquiler de experiencias con coches de lujo. Si estás buscando una aventura emocionante
-            y única, has llegado al lugar adecuado. Ofrecemos una selección impresionante de los mejores coches de lujo del mercado,
-            para que puedas experimentar la emoción de conducir un vehículo de alto rendimiento en algunos de los paisajes más impresionantes del mundo.
+            {{ __('messages.parrafo1') }}
         </p>
         <p>
-            Nuestro objetivo es proporcionar a nuestros clientes una experiencia inolvidable, y por eso nos esforzamos por ofrecer un
-            servicio excepcional en todo momento. Desde la selección de los vehículos hasta la compra de merchandising de los coches y la atención al
-            detalle en cada aspecto de la experiencia, nos aseguramos de que todo sea perfecto para nuestros clientes.
+            {{ __('messages.parrafo2') }}
         </p>
         <p>
-            Ya sea que quieras sorprender a alguien especial con un regalo único, celebrar una ocasión especial o
-            simplemente experimentar la adrenalina de conducir un coche de lujo, nuestro equipo está listo para ayudarte a
-            planificar una experiencia que nunca olvidarás. Explora nuestra página para descubrir más sobre nuestros servicios
-            y coches de lujo disponibles para alquilar. ¡Empecemos la aventura!
+            {{ __('messages.parrafo3') }}
         </p>
     </div>
 
@@ -64,5 +66,4 @@
         </button>
     </div>
 </div>
-
 @endsection
