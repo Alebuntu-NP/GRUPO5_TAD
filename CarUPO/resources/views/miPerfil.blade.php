@@ -34,7 +34,17 @@
             </tr>
             <tr class="table-row  text-center align-middle">
                 <td class="fw-bold">Idioma</td>
-                <td>{{ Auth::user()->language }}</td>
+                <td class="justify-content-center d-flex">
+                    <select class="form-select h-50 w-50" name="language" aria-label="Default select example">
+                        @if (Auth::user()->language == "es")
+                        <option selected value="es">Español</option>
+                        <option value="en">English</option>
+                        @else
+                        <option value="es">Español</option>
+                        <option selected value="en">English</option>
+                        @endif
+                    </select>
+                </td>
             </tr>
         </table>
         <div class="justify-content-center d-flex">
