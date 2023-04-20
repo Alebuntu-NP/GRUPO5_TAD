@@ -17,6 +17,7 @@ class UsersController extends Controller
     {
         $user = User::findOrFail($request->id);
         $user->phone = $request->phone;
+        $user->language = $request->language;
         $user->save();
         return app()->make(PagesController::class)->callAction('verPerfil', []);
     }
