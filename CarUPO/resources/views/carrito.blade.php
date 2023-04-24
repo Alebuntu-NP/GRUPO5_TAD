@@ -56,7 +56,7 @@
 <div class="justify-content-center d-flex mt-3">
     <form action="{{ route('comprarCarrito') }}" method="POST">
         @csrf
-        <input type="hidden" name="id" value="{{}}">
+        <input type="hidden" name="id" value="{{$mi_carrito->id}}">
         <button class="buttonP btn btn-danger btn-block" type="submit">
             {{ __('messages.comprar') }}
         </button>

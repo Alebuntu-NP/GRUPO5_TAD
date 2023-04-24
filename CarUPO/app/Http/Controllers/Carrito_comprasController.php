@@ -13,6 +13,7 @@ use App\Models\Producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
 
 
 class Carrito_comprasController extends Controller
@@ -41,16 +42,25 @@ class Carrito_comprasController extends Controller
     public function addToCarrito(Request $request)
     {
         $id = Auth::user()->id;
-        $mi_carrito = Carrito_compra::findOrFail($id);
-        $linea_carrito = new Linea_carrito();
-        $producto = Producto::findOrFail($id);
-        $linea_carrito->fk_producto_id = $producto->id;
-        $linea_carrito->fk_carrito_id = $mi_carrito->id;
-        $linea_carrito->cantidad = $request->cantidad;
-        $linea_carrito->precio_parcial = $request->cantidad * $producto->precio;
-        $linea_carrito->save();
-        $mi_carrito->precio_total = $mi_carrito->precio_total + $linea_carrito->precio_parcial;
-        $mi_carrito->save();
+        $producto = Producto::findOrFail($request->id);
+
+        $existe_producto_en_carrito = DB::table('carrito_compras')
+            ->join('linea_carritos', 'carrito_compras.id', '=', 'linea_carritos.fk_carrito_id')
+            ->where('linea_carritos.fk_producto_id', '=', $producto->id)
+            ->where('carrito_compras.fk_user', '=', Auth::id())
+            ->exists();
+
+        if (!$existe_producto_en_carrito) {
+            $mi_carrito = Carrito_compra::findOrFail($id);
+            $linea_carrito = new Linea_carrito();
+            $linea_carrito->fk_producto_id = $producto->id;
+            $linea_carrito->fk_carrito_id = $mi_carrito->id;
+            $linea_carrito->cantidad = $request->cantidad;
+            $linea_carrito->precio_parcial = $request->cantidad * $producto->precio;
+            $linea_carrito->save();
+            $mi_carrito->precio_total = $mi_carrito->precio_total + $linea_carrito->precio_parcial;
+            $mi_carrito->save();
+        }
         return app()->make(Carrito_comprasController::class)->callAction('mostrarCarrito', []);
     }
 
