@@ -28,17 +28,40 @@ class Carrito_comprasController extends Controller
 
 
 
-    public function eliminarLineaCarrito(Request $request)
+    public function aumentarLineaCarrito(Request $request)
+    {
+
+        $id = Auth::user()->id;
+        $mi_carrito = Carrito_compra::findOrFail($id);
+        $linea_carrito = Linea_carrito::findOrFail($request->id);
+
+        $linea_carrito->cantidad +=  1;
+        $mi_carrito->precio_total += $linea_carrito->producto->precio;
+        $linea_carrito->precio_parcial += $linea_carrito->producto->precio;
+        $linea_carrito->save();
+        $mi_carrito->save();
+
+        return app()->make(Carrito_comprasController::class)->callAction('mostrarCarrito', []);
+    }
+
+    public function disminuirLineaCarrito(Request $request)
     {
         $id = Auth::user()->id;
         $mi_carrito = Carrito_compra::findOrFail($id);
         $linea_carrito = Linea_carrito::findOrFail($request->id);
-        $mi_carrito->precio_total = $mi_carrito->precio_total - $linea_carrito->precio_parcial;
+
+
+        $linea_carrito->cantidad -=  1;
+        $mi_carrito->precio_total -= $linea_carrito->producto->precio;
+        $linea_carrito->precio_parcial -= $linea_carrito->producto->precio;
+        $linea_carrito->save();
         $mi_carrito->save();
-        $linea_carrito->delete();
+
+        if ($mi_carrito->precio_total == 0) {
+            $linea_carrito->delete();
+        }
         return app()->make(Carrito_comprasController::class)->callAction('mostrarCarrito', []);
     }
-
     public function addToCarrito(Request $request)
     {
         $id = Auth::user()->id;
