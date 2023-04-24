@@ -27,7 +27,7 @@
                     <ul class="navbar-nav">
                         <!-- Authentication Links -->
                         @guest
-                            
+
                         <li class="nav-item justify-content-center d-flex">
                             <a class="nav-link text-white" href="{{ route('login') }}">{{ __('messages.login') }}</a>
                         </li>
@@ -37,12 +37,12 @@
                         </li>
                         @endif
                         @else
-                            {{ app()->setLocale('es') }}
-                            @if (Auth::user()->language == 'Español')
-                                {{ app()->setLocale('es') }}
-                            @else
-                                {{ app()->setLocale('en') }}
-                            @endif
+                        {{ app()->setLocale('es') }}
+                        @if (Auth::user()->language == 'es')
+                        {{ app()->setLocale('es') }}
+                        @else
+                        {{ app()->setLocale('en') }}
+                        @endif
                         <li class="nav-item justify-content-center d-flex">
                             <a class="nav-link text-white" href="{{route('miPerfil')}}">{{ __('messages.perfil') }}</a>
                         </li>
@@ -69,7 +69,7 @@
                         </li>
                         <li class="nav-item justify-content-center d-flex">
                             <a class="nav-link text-white" href="{{route('mostrarCarrito')}}">{{ __('messages.carrito') }}</a>
-                        </li>                        
+                        </li>
                         <li class="nav-item justify-content-center d-flex">
                             <a class="nav-link text-white" href="{{ route('misFavoritos') }}">{{ __('messages.misFavs') }}</a>
 
