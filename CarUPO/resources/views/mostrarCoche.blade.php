@@ -16,7 +16,7 @@
     </div>
 
     <p>
-        El precio indicado en la tabla sería el precio por hora de la experiencia con este fantástico coche.
+        {{ __('messages.precioHora') }}
     </p>
     <p>
         {{ $coche->producto->descripcion }}
@@ -29,35 +29,35 @@
     <div class="table-responsive">
         <table class="table table-striped rounded-2 bg-white">
             <tr class="table-row  text-center align-middle">
-                <td class="fw-bold">Marca</td>
+                <td class="fw-bold">{{ __('messages.marca') }}</td>
                 <td>{{ $coche->marca }}</td>
             </tr>
             <tr class="table-row  text-center align-middle">
-                <td class="fw-bold">Modelo</td>
+                <td class="fw-bold">{{ __('messages.modelo') }}</td>
                 <td>{{ $coche->modelo }}</td>
             </tr>
             <tr class="table-row  text-center align-middle">
-                <td class="fw-bold">Color</td>
+                <td class="fw-bold">{{ __('messages.color') }}</td>
                 <td>{{ $coche->color }}</td>
             </tr>
             <tr class="table-row  text-center align-middle">
-                <td class="fw-bold">Combustible</td>
+                <td class="fw-bold">{{ __('messages.combustible') }}</td>
                 <td>{{ $coche->combustible }}</td>
             </tr>
             <tr class="table-row  text-center align-middle">
-                <td class="fw-bold">Cilindrada (cc)</td>
+                <td class="fw-bold">{{ __('messages.cilindrada') }} (cc)</td>
                 <td>{{ $coche->cilindrada }}</td>
             </tr>
             <tr class="table-row  text-center align-middle">
-                <td class="fw-bold">Potencia (cv)</td>
+                <td class="fw-bold">{{ __('messages.potencia') }} (cv)</td>
                 <td>{{ $coche->potencia }}</td>
             </tr>
             <tr class="table-row  text-center align-middle">
-                <td class="fw-bold">N&uacute;mero de puertas</td>
+                <td class="fw-bold">{{ __('messages.nPuertas') }}</td>
                 <td>{{ $coche->nPuertas }}</td>
             </tr>
             <tr class="table-row  text-center align-middle">
-                <td class="fw-bold">Precio</td>
+                <td class="fw-bold">{{ __('messages.precio') }}</td>
                 <td>{{ $coche->producto->precio }}</td>
             </tr>
         </table>
@@ -66,11 +66,11 @@
     <div class="d-flex justify-content-center">
         <form action="{{ route('addToCarrito') }}" method="POST">
             @csrf
-            <label>Cantidad: </label>
+            <label>{{ __('messages.cantidad') }}: </label>
             <input type="number" name="cantidad" value="0">
             <input type="hidden" name="id" value="{{ $coche->fk_producto_id }}">
             <button class="buttonP btn btn-danger btn-block" type="submit">
-                Añadir al Carrito
+                {{ __('messages.addCarrito') }}
             </button>
         </form>
     </div>
@@ -110,7 +110,7 @@
         <form action="{{ route('mostrarProductos') }}" method="GET">
             @csrf
             <button class="btn btn-danger btn-block" type="submit">
-                Atr&aacute;s
+                {{ __('messages.atras') }}
             </button>
         </form>
     </div>
