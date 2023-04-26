@@ -1,6 +1,16 @@
 @extends('plantilla')
 @section('titulo','INICIO')
 @section('contenido')
+@guest
+{{ app()->setLocale('es') }}
+
+@else
+@if (Auth::user()->language == 'es')
+{{ app()->setLocale('es') }}
+@else
+{{ app()->setLocale('en') }}
+@endif
+@endguest
 <div class="container-lg my-3 col-xs-12 col-sm-10 col-md-6 col-lg-4 col-xl-4">
     <div class="justify-content-center d-flex mb-3">
         <h1>Editar {{ $coche->marca }} {{ $coche->modelo }}</h1>

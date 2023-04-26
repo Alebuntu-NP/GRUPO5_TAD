@@ -4,7 +4,7 @@
 {{ app()->setLocale('es') }}
 
 @else
-@if (Auth::user()->language == 'Español')
+@if (Auth::user()->language == 'es')
 {{ app()->setLocale('es') }}
 @else
 {{ app()->setLocale('en') }}
@@ -58,11 +58,11 @@
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Anterior</span>
+            <span class="visually-hidden">{{ __('messages.anterior') }}</span>
         </button>
         <button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Siguiente</span>
+            <span class="visually-hidden">{{ __('messages.siguiente') }}</span>
         </button>
     </div>
 </div>
