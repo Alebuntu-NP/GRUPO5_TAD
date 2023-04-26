@@ -13,18 +13,18 @@
 @endguest
 <div class="container-lg my-3 col-10">
     <div class="justify-content-center d-flex mb-3">
-        <h1>Productos</h1>
+        <h1>{{ __('messages.productos') }}</h1>
     </div>
 
     @if ($productos->isEmpty())
     <div class="alert alert-info">
-        <span>No hay productos disponibles</span>
+        <span>{{ __('messages.noProductos') }}</span>
     </div>
     @else
     @if (Auth::user()->isAdmin())
     <div class="justify-content-center d-flex">
-        <a href="{{route('crearCoche')}}" class="buttonP btn btn-primary m-2">Crear coche</a>
-        <a href="{{route('crearAccesorio')}}" class="buttonP btn btn-primary m-2">Crear accesorio</a>
+        <a href="{{route('crearCoche')}}" class="buttonP btn btn-primary m-2">{{ __('messages.addCoche') }}</a>
+        <a href="{{route('crearAccesorio')}}" class="buttonP btn btn-primary m-2">{{ __('messages.addAccesorio') }}</a>
     </div>
 
     <div class="justify-content-center d-flex mt-5">
