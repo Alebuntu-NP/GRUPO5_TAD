@@ -87,5 +87,4 @@ return [
     "logueado" => "You are logged in!",
     "verificar" => "You must verify your email address. Please, check your email for a verification link",
     "datosCompra" => "Purchase data number",
-    
 ];

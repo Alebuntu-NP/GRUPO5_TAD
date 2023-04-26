@@ -14,12 +14,17 @@ class ComprasController extends Controller
         return view('compras', @compact('compras'));
     }
 
+    public function mostrarCompra(Request $request)
+    {
+        $compra = Compra::findOrFail($request->id);
+        return view('compra', @compact('compra'));
+    }
+
     public function misCompras()
     {
         $compras = Auth::user()->compras;
         return view('misCompras', @compact('compras'));
     }
-
 
     public function actualizarEstado(Request $request)
     {

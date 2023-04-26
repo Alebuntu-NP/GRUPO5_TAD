@@ -90,7 +90,6 @@ class Carrito_comprasController extends Controller
 
     public function comprarCarrito()
     {
-
         $id = Auth::user()->id;
         $mi_carrito = Carrito_compra::findOrFail($id);
         $compra = new Compra();

@@ -56,6 +56,7 @@
             @endforeach
         </select>
         <label for="foto" class="form-label">{{ __('messages.foto') }}</label>
+
         <input type="file" name="foto" class="form-control mb-2">
 
         <label for="precio" class="form-label">{{ __('messages.precio') }}</label>

@@ -66,6 +66,7 @@ Route::delete('/delCoche', [CochesController::class, 'eliminarCoche'])->name('co
 
 //COMPRAS
 Route::get('/compras', [ComprasController::class, 'mostrarCompras'])->name('mostrarCompras');
+Route::get('/compra', [ComprasController::class, 'mostrarCompra'])->name('mostrarCompra');
 Route::get('/misCompras', [ComprasController::class, 'misCompras'])->name('misCompras');
 Route::put('/estadoActualizado', [ComprasController::class, 'actualizarEstado'])->name('actualizarEstado');
 
