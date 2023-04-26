@@ -12,12 +12,12 @@
 @endguest
 <div class="container-lg my-3 col-10">
     <div class="justify-content-center d-flex mb-3">
-        <h1>Mis favoritos</h1>
+        <h1>{{ __('messages.misFavs') }}</h1>
     </div>
 
     @if ($productosFavoritos->isEmpty())
     <div class="alert alert-info">
-        <span>No hay productos disponibles</span>
+        <span>{{ __('messages.noFavs') }}</span>
     </div>
     @else
     <div class="row row-cols-1 row-cols-xs-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
@@ -35,7 +35,7 @@
                         @csrf
                         <input type="hidden" name="id" value="{{ $producto->coche->id }}">
                         <button class="buttonP btn btn-primary" type="submit">
-                            Ver producto
+                            {{ __('messages.verProd') }}
                         </button>
                     </form>
                 </div>
@@ -55,7 +55,7 @@
                         @csrf
                         <input type="hidden" name="id" value="{{ $producto->accesorio->id }}">
                         <button class="buttonP btn btn-primary" type="submit">
-                            Ver producto
+                            {{ __('messages.verProd') }}
                         </button>
                     </form>
                 </div>
