@@ -29,7 +29,19 @@
                 <td>{{ $accesorio->nombre }}</td>
             </tr>
             <tr class="table-row  text-center align-middle">
+
+                <td class="fw-bold">Categorias</td>
+                <td>
+                    @foreach ($accesorio->producto->productos_categorias as $categoria)
+                    {{ $categoria->categoria->nombre }}<br>
+                    @endforeach
+                </td>
+            </tr>
+            <tr class="table-row  text-center align-middle">
+                <td class="fw-bold">Descripci&oacute;n</td>
+
                 <td class="fw-bold">{{ __('messages.descripcion') }}</td>
+
                 <td>{{ $accesorio->producto->descripcion }}</td>
             </tr>
             <tr class="table-row  text-center align-middle">
