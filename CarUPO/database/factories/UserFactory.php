@@ -29,7 +29,7 @@ class UserFactory extends Factory
             #'phone' => $this->faker->optional()->phoneNumber(),
             'phone' => $this->faker->optional()->numerify('#########'),
             'password' => bcrypt('password'),
-            'language' => 'Español',
+            'language' => 'es',
             'admin' => false,
             'remember_token' => Str::random(10),
         ];

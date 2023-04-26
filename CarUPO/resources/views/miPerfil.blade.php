@@ -36,8 +36,8 @@
                 <td class="fw-bold">Idioma</td>
                 <td class="justify-content-center d-flex">
                     <select class="form-select h-50 w-50" name="language" aria-label="Default select example">
-                        @if (Auth::user()->language == "Español")
-                        <option selected value="Español">Español</option>
+                        @if (Auth::user()->language == "es")
+                        <option selected value="es">Español</option>
                         <option value="en">English</option>
                         @else
                         <option value="es">Español</option>
