@@ -22,13 +22,15 @@ class CochesController extends Controller
         $producto->foto = $nfoto;
         $producto->precio = $request->precio;
         $producto->save();
-
-        foreach ($request->categorias as $categoria) {
-            $producto_categoria = new Producto_categoria();
-            $producto_categoria->fk_producto_id = $producto->id;
-            $producto_categoria->fk_categoria_id = $categoria;
-            $producto_categoria->save();
+        if ($request->categorias != null) {
+            foreach ($request->categorias as $categoria) {
+                $producto_categoria = new Producto_categoria();
+                $producto_categoria->fk_producto_id = $producto->id;
+                $producto_categoria->fk_categoria_id = $categoria;
+                $producto_categoria->save();
+            }
         }
+
 
         $coche = new Coche();
         $coche->marca = $request->marca;

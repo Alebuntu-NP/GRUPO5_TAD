@@ -77,7 +77,8 @@ Route::post('/comprarCarrito', [Carrito_comprasController::class, 'comprarCarrit
 
 //LINEA DE CARRITO
 Route::post('/addAlCarrito', [Carrito_comprasController::class, 'addToCarrito'])->name('addToCarrito');
-Route::delete('/deleteToCarrito', [Carrito_comprasController::class, 'eliminarLineaCarrito'])->name('eliminarLineaCarrito');
+Route::post('/masLineaCarrito', [Carrito_comprasController::class, 'aumentarLineaCarrito'])->name('masLineaCarrito');
+Route::post('/menosLineaToCarrito', [Carrito_comprasController::class, 'disminuirLineaCarrito'])->name('menosLineaCarrito');
 
 //FAVORITOS
 Route::get('/misFavoritos', [FavoritosController::class, 'misFavoritos'])->name('misFavoritos');

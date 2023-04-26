@@ -8,39 +8,39 @@
     <div class="table-responsive">
         <table class="table table-striped rounded-2 bg-white">
             <tr class="table-row  text-center align-middle">
-                <td class="fw-bold">Marca</td>
+                <td class="fw-bold">{{ __('messages.marca') }}</td>
                 <td>{{ $coche->marca }}</td>
             </tr>
             <tr class="table-row  text-center align-middle">
-                <td class="fw-bold">Modelo</td>
+                <td class="fw-bold">{{ __('messages.modelo') }}</td>
                 <td>{{ $coche->modelo }}</td>
             </tr>
             <tr class="table-row  text-center align-middle">
-                <td class="fw-bold">Descripci&oacute;n</td>
+                <td class="fw-bold">{{ __('messages.descripcion') }}</td>
                 <td>{{ $coche->producto->descripcion }}</td>
             </tr>
             <tr class="table-row  text-center align-middle">
-                <td class="fw-bold">Color</td>
+                <td class="fw-bold">{{ __('messages.color') }}</td>
                 <td>{{ $coche->color }}</td>
             </tr>
             <tr class="table-row  text-center align-middle">
-                <td class="fw-bold">Combustible</td>
+                <td class="fw-bold">{{ __('messages.combustible') }}</td>
                 <td>{{ $coche->combustible }}</td>
             </tr>
             <tr class="table-row  text-center align-middle">
-                <td class="fw-bold">Cilindrada</td>
+                <td class="fw-bold">{{ __('messages.cilindrada') }}</td>
                 <td>{{ $coche->cilindrada }}</td>
             </tr>
             <tr class="table-row  text-center align-middle">
-                <td class="fw-bold">Potencia</td>
+                <td class="fw-bold">{{ __('messages.potencia') }}</td>
                 <td>{{ $coche->potencia }}</td>
             </tr>
             <tr class="table-row  text-center align-middle">
-                <td class="fw-bold">N&uacute;mero de puertas</td>
+                <td class="fw-bold">{{ __('messages.nPuertas') }}</td>
                 <td>{{ $coche->nPuertas }}</td>
             </tr>
             <tr class="table-row  text-center align-middle">
-                <td class="fw-bold">Precio</td>
+                <td class="fw-bold">{{ __('messages.precio') }}</td>
                 <td>{{ $coche->producto->precio }}</td>
             </tr>
         </table>
@@ -52,7 +52,7 @@
             @method('DELETE')
             <input type="hidden" name="id" value="{{ $coche->id }}">
             <button class="btn btn-danger btn-block" type="submit">
-                Eliminar coche
+                {{ __('messages.elCoche') }}
             </button>
         </form>
     </div>
@@ -60,7 +60,7 @@
         <form action="{{ route('mostrarProductos') }}" method="GET">
             @csrf
             <button class="buttonP btn btn-danger btn-block" type="submit">
-                Atr&aacute;s
+                {{ __('messages.atras') }}
             </button>
         </form>
     </div>
