@@ -84,4 +84,8 @@ return [
     "noProductos" => "No hay productos disponibles",
     "addCoche" => "Crear coche",
     "addAccesorio" => "Crear accesorio",
+    "dashboard" => "Panel de control",
+    "logueado" => "¡Has iniciado sesión correctamente!",
+    "verificar" => "Verifica tu correo electrónico. Por favor, comprueba tu correo para el enlace de verificación.",
+    "datosCompra" => "Datos de la compra número",
 ];
