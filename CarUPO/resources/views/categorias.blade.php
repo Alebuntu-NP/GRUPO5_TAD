@@ -1,7 +1,16 @@
 @extends('plantilla')
 @section('titulo', 'INICIO')
 @section('contenido')
+@guest
+{{ app()->setLocale('es') }}
 
+@else
+@if (Auth::user()->language == 'es')
+{{ app()->setLocale('es') }}
+@else
+{{ app()->setLocale('en') }}
+@endif
+@endguest
 <div class="container-lg my-3 col-xs-10 col-md-8 col-lg-8 col-xl-8">
     <div class="justify-content-center d-flex mb-3">
         <h1>{{ __('messages.lisCategorias') }}</h1>
@@ -11,8 +20,8 @@
         <form action="{{ route('addToCategorias') }}" method="POST">
             @csrf {{-- Cláusula para obtener un token de formulario al enviarlo --}}
             <div class="input-group">
-                <input type="text" required name="nombre" placeholder="Nombre" class="form-control mb-2" autofocus>
-                <input class="buttonP btn btn-primary m-2" type="submit" value="Crear categoria" />
+                <input type="text" required name="nombre" placeholder="{{ __('messages.nombre') }}" class="form-control mb-2" autofocus>
+                <input class="buttonP btn btn-primary m-2" type="submit" value="{{ __('messages.crearCategoria') }}" />
             </div>
         </form>
     </div>
