@@ -5,7 +5,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    Dashboard
+                    {{ __('messages.dashboard') }}
                 </div>
 
                 <div class="card-body">
@@ -14,7 +14,7 @@
                         {{session('status')}}
                     </div>
                     @endif
-                    You are logged in!
+                    {{ __('messages.logueado') }}
                 </div>
             </div>
         </div>

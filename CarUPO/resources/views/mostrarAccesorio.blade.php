@@ -41,7 +41,6 @@
                 <td class="fw-bold">Descripci&oacute;n</td>
 
                 <td class="fw-bold">{{ __('messages.descripcion') }}</td>
-
                 <td>{{ $accesorio->producto->descripcion }}</td>
             </tr>
             <tr class="table-row  text-center align-middle">

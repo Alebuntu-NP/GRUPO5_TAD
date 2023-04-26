@@ -83,4 +83,8 @@ return [
     "noProductos" => "No available products",
     "addCoche" => "Create car",
     "addAccesorio" => "Create accesory",
+    "dashboard" => "Dashboard",
+    "logueado" => "You are logged in!",
+    "verificar" => "You must verify your email address. Please, check your email for a verification link",
+    "datosCompra" => "Purchase data number",
 ];

@@ -47,7 +47,6 @@
             <tr class="table-row  text-center align-middle">
                 <td class="fw-bold">Color</td>
                 <td class="fw-bold">{{ __('messages.color') }}</td>
-
                 <td>{{ $coche->color }}</td>
             </tr>
             <tr class="table-row  text-center align-middle">
