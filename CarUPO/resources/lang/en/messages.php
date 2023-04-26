@@ -63,6 +63,4 @@ return [
     "foto" => "Image",
     "crearCoche" => "Create new car",
     "edAccesorio" => "Update accesory",
-
-
 ];
