@@ -43,11 +43,18 @@
 
         <label for="categorias" class="form-label">{{ __('messages.categoria') }}</label>
 
-        <select name="categorias[]" class="form-control mb-2" multiple>
+        <label for="categorias" class="form-label">Categoria</label>
+        <div class="containerP">
             @foreach (DB::table('categorias')->get() as $categoria)
-            <option value="{{ $categoria->id }}" class="form-control mb-2">{{ $categoria->nombre }}</option>
+            <div class="form-check">
+                <input class="form-check-input" name="categorias[]" type="checkbox" value="{{ $categoria->id }}" id="flexCheck">
+                <label class="form-check-label" for="flexCheckDefault">
+                    {{ $categoria->nombre }}
+                </label>
+            </div>
             @endforeach
-        </select>
+        </div>
+        
         <label for="foto" class="form-label">{{ __('messages.foto') }}</label>
         <input type="file" required name="foto" class="form-control mb-2">
 

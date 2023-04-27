@@ -28,25 +28,27 @@
 
 
         <label for="categorias" class="form-label">Categoria</label>
-        @foreach (DB::table('categorias')->get() as $categoria)
-        @if(DB::table('producto_categorias')->where('fk_producto_id', '=', $accesorio->fk_producto_id)->where('fk_categoria_id', '=', $categoria->id)
-        ->exists())
-        <div class="form-check">
-            <input class="form-check-input" name="categorias[]" type="checkbox" value="{{ $categoria->id }}" id="flexCheckChecked" checked>
-            <label class="form-check-label" for="flexCheckChecked">
-                {{ $categoria->nombre }}
-            </label>
-        </div>
+        <div class="containerP">
+            @foreach (DB::table('categorias')->get() as $categoria)
+            @if(DB::table('producto_categorias')->where('fk_producto_id', '=', $accesorio->fk_producto_id)->where('fk_categoria_id', '=', $categoria->id)
+            ->exists())
+            <div class="form-check">
+                <input class="form-check-input" name="categorias[]" type="checkbox" value="{{ $categoria->id }}" id="flexCheckChecked" checked>
+                <label class="form-check-label" for="flexCheckChecked">
+                    {{ $categoria->nombre }}
+                </label>
+            </div>
 
-        @else
-        <div class="form-check">
-            <input class="form-check-input" name="categorias[]" type="checkbox" value="{{ $categoria->id }}" id="flexCheck">
-            <label class="form-check-label" for="flexCheckDefault">
-                {{ $categoria->nombre }}
-            </label>
+            @else
+            <div class="form-check">
+                <input class="form-check-input" name="categorias[]" type="checkbox" value="{{ $categoria->id }}" id="flexCheck">
+                <label class="form-check-label" for="flexCheckDefault">
+                    {{ $categoria->nombre }}
+                </label>
+            </div>
+            @endif
+            @endforeach
         </div>
-        @endif
-        @endforeach
 
         <label for="foto" class="form-label">{{ __('messages.foto') }}</label>
         <input type="file" name="foto" class="form-control mb-2">

@@ -17,3 +17,9 @@ $active: #557996;
     background-color: $active;
     border-color: $active;
 }
+
+.containerP { 
+    width:300px; 
+    height: 100px;
+    overflow-y: scroll;
+}
