@@ -18,17 +18,17 @@
     </div>
     <div class="justify-content-center d-flex m-4 ">
         <div>
-            <h4>Filtrado por categorías</h4>
+            <h4>{{ __('messages.filtradoCategorias') }}</h4>
             <form action="{{ route('filtrarProductos') }}" method="GET">
                 <select class="form-select" name="categoria" aria-label="Default select example">
-                    <option value="0">Ningún filtro</option>
+                    <option value="0">{{ __('messages.noFiltro') }}</option>
                     @foreach (DB::table('categorias')->get() as $categoria)
                     <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
                     @endforeach
                 </select>
                 <div class="justify-content-center d-flex">
                     <button class="buttonP btn btn-primary btn-block mt-2" type="submit">
-                        Filtrar
+                        {{ __('messages.filtrar') }}
                     </button>
                 </div>
             </form>
@@ -186,7 +186,7 @@
                         @csrf
                         <input type="hidden" name="id" value="{{ $producto->coche->id }}">
                         <button class="buttonP btn btn-primary" type="submit">
-                            {{ __('messages.verProducto') }}
+                            {{ __('messages.verProd') }}
                         </button>
                     </form>
                 </div>
@@ -206,7 +206,7 @@
                         @csrf
                         <input type="hidden" name="id" value="{{ $producto->accesorio->id }}">
                         <button class="buttonP btn btn-primary" type="submit">
-                            {{ __('messages.verProducto') }}
+                            {{ __('messages.verProd') }}
                         </button>
                     </form>
                 </div>
