@@ -40,10 +40,6 @@
     </div>
     @else
     @if (Auth::user()->isAdmin())
-    <div class="justify-content-center d-flex">
-        <a href="{{route('crearCoche')}}" class="buttonP btn btn-primary m-2">{{ __('messages.addCoche') }}</a>
-        <a href="{{route('crearAccesorio')}}" class="buttonP btn btn-primary m-2">{{ __('messages.addAccesorio') }}</a>
-    </div>
 
     <div class="justify-content-center d-flex mt-5">
         <h3>Coches</h3>
@@ -109,6 +105,9 @@
             @endforeach
         </table>
     </div>
+    <div class="justify-content-center d-flex">
+        <a href="{{route('crearCoche')}}" class="buttonP btn btn-primary m-2">{{ __('messages.addCoche') }}</a>
+    </div>
 
     <div class="justify-content-center d-flex mt-5">
         <h3>Accesorios</h3>
@@ -169,6 +168,9 @@
             @endforeach
         </table>
     </div>
+    <div class="justify-content-center d-flex">
+        <a href="{{route('crearAccesorio')}}" class="buttonP btn btn-primary m-2">{{ __('messages.addAccesorio') }}</a>
+    </div>
 
     @else
     <div class="row row-cols-1 row-cols-xs-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
@@ -180,6 +182,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $producto->coche->marca }} {{ $producto->coche->modelo }} {{ $producto->coche->cilindrada }}</h5>
                     <p class="card-text">{{ $producto->coche->producto->descripcion }}</p>
+                    <p class="card-text d-flex align-items-end"><b>Precio:</b> &nbsp;{{ $producto->precio }} €/hora</p>
                 </div>
                 <div class="card-footer justify-content-center d-flex">
                     <form action="{{ route('verCoche') }}" method="POST">
@@ -200,6 +203,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $producto->accesorio->nombre }}</h5>
                     <p class="card-text">{{ $producto->descripcion }}</p>
+                    <p class="card-text d-flex align-items-end"><b>Precio:</b> &nbsp;{{ $producto->precio }} €</p>
                 </div>
                 <div class="card-footer justify-content-center d-flex">
                     <form action="{{ route('verAccesorio') }}" method="POST">

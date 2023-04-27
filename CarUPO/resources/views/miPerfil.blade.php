@@ -32,7 +32,7 @@
             </tr>
             <tr class="table-row  text-center align-middle">
                 <td class="fw-bold">{{ __('messages.correo') }}</td>
-                <td>{{ Auth::user()->email }}</td>
+                <td><input type="text" name="email" value="{{ Auth::user()->email }}"></td>
             </tr>
             <tr class="table-row  text-center align-middle">
                 <td class="fw-bold">{{ __('messages.telefono') }}</td>
@@ -62,6 +62,8 @@
             </button>
         </div>
     </form>
-
+    <button class="btn btn-danger btn-block m-3">
+        Cambiar contraseña
+    </button>
 </div>
 @endsection
