@@ -40,10 +40,7 @@
 
         <label for="nPuertas" class="form-label">{{ __('messages.nPuertas') }}</label>
         <input type="number" required name="nPuertas" value="{{ $coche->nPuertas }}" placeholder="{{ __('messages.nPuertas') }}" step="1" class="form-control mb-2">
-
-
-
-        <label for="categorias" class="form-label">Categoria</label>
+        <label for="categorias" class="form-label">{{ __('messages.categorias') }}</label>
         <div class="containerP">
             @foreach (DB::table('categorias')->get() as $categoria)
             @if(DB::table('producto_categorias')->where('fk_producto_id', '=', $coche->fk_producto_id)->where('fk_categoria_id', '=', $categoria->id)

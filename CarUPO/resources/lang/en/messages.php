@@ -5,6 +5,8 @@ return [
     "registro" => "Sign up",
     "perfil" => "My profile",
     "productos" => "Products",
+    "coches" => "Cars",
+    "accesorios" => "Accesories",
     "usuarios" => "Users",
     "compras" => "Purchases",
     "misCompras" => "My purchases",
@@ -87,4 +89,6 @@ return [
     "logueado" => "You are logged in!",
     "verificar" => "You must verify your email address. Please, check your email for a verification link",
     "datosCompra" => "Purchase data number",
+    "miPerfil" => "My profile",
+    "preciohora" => "Price per Hour",
 ];
