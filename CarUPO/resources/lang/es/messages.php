@@ -5,6 +5,8 @@ return [
     "registro" => "Registrarse",
     "perfil" => "Mi perfil",
     "productos" => "Productos",
+    "coches" => "Coches",
+    "accesorios" => "Accesorios",
     "usuarios" => "Usuarios",
     "compras" => "Compras",
     "misCompras" => "Mis compras",
@@ -88,4 +90,6 @@ return [
     "logueado" => "¡Has iniciado sesión correctamente!",
     "verificar" => "Verifica tu correo electrónico. Por favor, comprueba tu correo para el enlace de verificación.",
     "datosCompra" => "Datos de la compra número",
+    "miPerfil" => "Mi perfil",
+    "preciohora" => "Precio por Hora",
 ];

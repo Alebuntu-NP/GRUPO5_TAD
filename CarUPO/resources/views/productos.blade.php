@@ -28,19 +28,19 @@
     </div>
 
     <div class="justify-content-center d-flex mt-5">
-        <h3>Coches</h3>
+        <h3>{{ __('messages.coches') }}</h3>
     </div>
     <div class="table-responsive">
         <table class="table table-striped rounded-2 bg-white">
             <thead>
                 <tr class="table-row  text-center align-middle">
-                    <th>Marca</th>
-                    <th>Modelo</th>
-                    <th>Color</th>
-                    <th>Cilindrada</th>
-                    <th>Potencia</th>
-                    <th>Precio/Hora</th>
-                    <th>Acciones</th>
+                    <th>{{ __('messages.marca') }}</th>
+                    <th>{{ __('messages.modelo') }}</th>
+                    <th>{{ __('messages.color') }}</th>
+                    <th>{{ __('messages.cilindrada') }}</th>
+                    <th>{{ __('messages.potencia') }}</th>
+                    <th>{{ __('messages.preciohora') }}</th>
+                    <th>{{ __('messages.acciones') }}</th>
                 </tr>
             </thead>
             @foreach ($productos as $producto)
@@ -93,16 +93,16 @@
     </div>
 
     <div class="justify-content-center d-flex mt-5">
-        <h3>Accesorios</h3>
+        <h3>{{ __('messages.accesorios') }}</h3>
     </div>
     <div class="table-responsive">
         <table class="table table-striped rounded-2 bg-white">
             <thead>
                 <tr class="table-row  text-center align-middle">
-                    <th>Nombre</th>
-                    <th>Descripci&oacute;n</th>
-                    <th>Precio</th>
-                    <th>Acciones</th>
+                    <th>{{ __('messages.nombre') }}</th>
+                    <th>{{ __('messages.descripcion') }}</th>
+                    <th>{{ __('messages.precio') }}</th>
+                    <th>{{ __('messages.acciones') }}</th>
                 </tr>
             </thead>
             @foreach ($productos as $producto)
@@ -168,7 +168,7 @@
                         @csrf
                         <input type="hidden" name="id" value="{{ $producto->coche->id }}">
                         <button class="buttonP btn btn-primary" type="submit">
-                            Ver producto
+                            {{ __('messages.verProducto') }}
                         </button>
                     </form>
                 </div>
@@ -188,7 +188,7 @@
                         @csrf
                         <input type="hidden" name="id" value="{{ $producto->accesorio->id }}">
                         <button class="buttonP btn btn-primary" type="submit">
-                            Ver producto
+                            {{ __('messages.verProducto') }}
                         </button>
                     </form>
                 </div>
