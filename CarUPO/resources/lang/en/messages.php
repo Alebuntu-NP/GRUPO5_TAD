@@ -74,8 +74,8 @@ return [
     "apellidos" => "Surnames",
     "telefono" => "Phone",
     "idioma" => "Language",
-    "en" => "Spanish",
-    "es" => "English",
+    "es" => "Spanish",
+    "en" => "English",
     "acUser" => "Update profile",
     "historialCompras" => "Purchases history",
     "noFavs" => "No available favourite products",
@@ -91,4 +91,7 @@ return [
     "datosCompra" => "Purchase data number",
     "miPerfil" => "My profile",
     "preciohora" => "Price per Hour",
+    "filtradoCategorias" => "Filter by categories",
+    "noFiltro" => "No filters",
+    "filtrar" => "Filter",
 ];
