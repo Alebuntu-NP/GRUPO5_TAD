@@ -12,4 +12,24 @@ class ProductosController extends Controller
         $productos = Producto::all();
         return view('productos', @compact('productos'));
     }
+
+    public function filtrarProductos(Request $request)
+    {
+        $todosP = Producto::all();
+        $productos = collect();
+        if ($request->categoria == 0) {
+            $productos = $todosP;
+        } else {            
+            foreach ($todosP as $product) {
+                $categorias = $product->productos_categorias;
+                foreach ($categorias as $cat) {                               
+                    if ($cat->categoria->id == $request->categoria) {
+                        $productos->push($product); 
+                    }
+                }            
+            }
+        }
+        
+        return view('productos', @compact('productos'));
+    }
 }

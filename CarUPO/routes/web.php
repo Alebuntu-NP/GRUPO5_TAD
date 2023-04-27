@@ -43,6 +43,7 @@ Route::get('/home', function () {
 
 //PRODUCTOS
 Route::get('/productos', [ProductosController::class, 'mostrarProductos'])->name('mostrarProductos');
+Route::get('/productosFiltrados', [ProductosController::class, 'filtrarProductos'])->name('filtrarProductos');
 
 
 
