@@ -11,11 +11,29 @@
 {{ app()->setLocale('en') }}
 @endif
 @endguest
+
 <div class="container-lg my-3 col-10">
     <div class="justify-content-center d-flex mb-3">
         <h1>{{ __('messages.productos') }}</h1>
     </div>
-
+    <div class="justify-content-center d-flex m-4 ">
+        <div>
+            <h4>Filtrado por categorías</h4>
+            <form action="{{ route('filtrarProductos') }}" method="GET">
+                <select class="form-select" name="categoria" aria-label="Default select example">
+                    <option value="0">Ningún filtro</option>
+                    @foreach (DB::table('categorias')->get() as $categoria)
+                    <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
+                    @endforeach
+                </select>
+                <div class="justify-content-center d-flex">
+                    <button class="buttonP btn btn-primary btn-block mt-2" type="submit">
+                        Filtrar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
     @if ($productos->isEmpty())
     <div class="alert alert-info">
         <span>{{ __('messages.noProductos') }}</span>
