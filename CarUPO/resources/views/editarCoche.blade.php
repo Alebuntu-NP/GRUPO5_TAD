@@ -65,8 +65,7 @@
             @endif
             @endforeach
         </div>
-
-        <label for="foto" class="form-label mt-3">Foto</label>
+        <label for="foto" class="form-label">{{ __('messages.foto') }}</label>
 
         <input type="file" name="foto" class="form-control mb-2">
 

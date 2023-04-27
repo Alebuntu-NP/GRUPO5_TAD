@@ -12,7 +12,7 @@
                 <div class="card-header">{{ __('Email Verification') }}</div>
 
                 <div class="card-body">
-                    <p>You must verify your email address. Please, check your email for a verification link</p>
+                    <p>{{ __('messages.verificar') }}</p>
                     <form method="POST" action="{{ route('verification.send') }}">
                         @csrf
 
