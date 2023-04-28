@@ -63,5 +63,9 @@
     </table>
 </div>
 @endif
+{{-- Pagination --}}
+<div class="d-flex justify-content-center mt-3">
+    {{ $compras->links() }}
+</div>
 </div>
 @endsection

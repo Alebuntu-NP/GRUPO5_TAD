@@ -10,7 +10,7 @@ class ComprasController extends Controller
 {
     public function mostrarCompras()
     {
-        $compras = Compra::all();
+        $compras = Compra::paginate(8);
         return view('compras', @compact('compras'));
     }
 
@@ -22,7 +22,7 @@ class ComprasController extends Controller
 
     public function misCompras()
     {
-        $compras = Auth::user()->compras;
+        $compras = Compra::where('fk_user', Auth::id())->paginate(8);
         return view('misCompras', @compact('compras'));
     }
 

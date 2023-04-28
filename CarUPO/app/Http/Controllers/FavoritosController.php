@@ -23,7 +23,7 @@ class FavoritosController extends Controller
             ->join('favoritos', 'favorito_productos.fk_favorito_id', '=', 'favoritos.id')
             ->where('favoritos.fk_user', '=', $id)
             ->select('productos.*')
-            ->get();
+            ->paginate(8);
         return view('/misFavoritos', @compact('productosFavoritos'));
     }
 
