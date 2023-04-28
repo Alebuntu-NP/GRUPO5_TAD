@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 
 class Carrito_comprasController extends Controller
@@ -64,6 +65,27 @@ class Carrito_comprasController extends Controller
     }
     public function addToCarrito(Request $request)
     {
+
+        // $reglas = [
+        //     'cantidad' => 'required|integer|min:1|max:8',
+        // ];
+
+        // $mensajes = [
+        //     'cantidad.required' => 'El campo número es obligatorio.',
+        //     'cantidad.integer' => 'El campo número debe ser un número entero.',
+        //     'cantidad.min' => 'El campo número debe ser mayor o igual a 1.',
+        //     'cantidad.max' => 'El campo número debe ser menor o igual a 8.',
+        // ];
+
+        // $validaciones = Validator::make($request->all(), $reglas, $mensajes);
+
+        // if ($validaciones->fails()) {
+        //     return redirect()
+        //         ->back()
+        //         ->withErrors($validaciones)
+        //         ->withInput();
+        // }
+
         $id = Auth::user()->id;
         $producto = Producto::findOrFail($request->id);
 

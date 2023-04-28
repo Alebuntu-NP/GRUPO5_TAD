@@ -75,7 +75,12 @@
         <form action="{{ route('addToCarrito') }}" method="POST">
             @csrf
             <label>{{ __('messages.cantidad') }}: </label>
-            <input type="number" name="cantidad" value="0">
+            <input type="number" name="cantidad" value="1">
+            @if ($errors->has('cantidad'))
+                <div class="alert alert-danger">
+                    {{ $errors->first('cantidad') }}
+                </div>
+            @endif
             <input type="hidden" name="id" value="{{ $coche->fk_producto_id }}">
             <button class="buttonP btn btn-danger btn-block" type="submit">
                 {{ __('messages.addCarrito') }}
