@@ -9,7 +9,7 @@ class UsersController extends Controller
 {
     public function mostrarUsuarios()
     {
-        $usuarios = User::all();
+        $usuarios = User::paginate(8);
         return view('usuarios', @compact('usuarios'));
     }
 

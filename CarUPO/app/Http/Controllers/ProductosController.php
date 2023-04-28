@@ -9,13 +9,13 @@ class ProductosController extends Controller
 {
     public function mostrarProductos()
     {
-        $productos = Producto::all();
+        $productos = Producto::paginate(8);
         return view('productos', @compact('productos'));
     }
 
     public function filtrarProductos(Request $request)
     {
-        $todosP = Producto::all();
+        $todosP = Producto::paginate(8);
         $productos = collect();
         if ($request->categoria == 0) {
             $productos = $todosP;
