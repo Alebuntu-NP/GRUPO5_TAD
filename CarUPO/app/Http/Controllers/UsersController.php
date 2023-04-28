@@ -9,7 +9,7 @@ class UsersController extends Controller
 {
     public function mostrarUsuarios()
     {
-        $usuarios = User::all();
+        $usuarios = User::paginate(8);
         return view('usuarios', @compact('usuarios'));
     }
 
@@ -17,6 +17,7 @@ class UsersController extends Controller
     {
         $user = User::findOrFail($request->id);
         $user->phone = $request->phone;
+        $user->email = $request->email;
         $user->language = $request->language;
         $user->save();
         return app()->make(PagesController::class)->callAction('verPerfil', []);

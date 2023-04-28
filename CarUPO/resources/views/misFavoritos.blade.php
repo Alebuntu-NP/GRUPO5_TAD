@@ -65,5 +65,9 @@
         @endforeach
     </div>
     @endif
+    {{-- Pagination --}}
+        <div class="d-flex justify-content-center mt-3">
+        {{ $productosFavoritos->links() }}
+        </div>
 </div>
 @endsection

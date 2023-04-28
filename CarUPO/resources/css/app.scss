@@ -1,7 +1,7 @@
 @import 'bootstrap/scss/bootstrap';
 
-$blue:    #012e46;
-$btn-link-color:#365b77;
+$blue: #012e46;
+$btn-link-color: #365b77;
 $active: #557996;
 
 #azul {
@@ -13,13 +13,19 @@ $active: #557996;
     border-color: $btn-link-color;
 }
 
+.page-link {
+    --bs-pagination-active-bg: #365b77;
+    --bs-pagination-active-border-color: #365b77;
+    --bs-pagination-color: #365b77;
+}
+
 .buttonP:hover {
     background-color: $active;
     border-color: $active;
 }
 
-.containerP { 
-    width:300px; 
+.containerP {
+    width: 300px;
     height: 100px;
     overflow-y: scroll;
 }
