@@ -8,12 +8,59 @@ use App\Models\Producto_categoria;
 use App\Models\Categoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class CochesController extends Controller
 {
 
     public function crearCoche(Request $request)
     {
+        $reglas = [
+            'descripcion' => 'required|max:255',
+            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'precio' => ['required', 'numeric', 'regex:/^\d{1,6}(\.\d{1,2})?$/'],
+            'marca' => 'required|max:255',
+            'modelo' => 'required|max:255',
+            'color' => 'required|max:255',
+            'combustible' => 'required|max:255',
+            'cilindrada' => ['required', 'numeric', 'regex:/^\d{1,6}(\.\d{1,2})?$/'],
+            'potencia' => ['required', 'numeric', 'regex:/^\d{1,6}(\.\d{1,2})?$/'],
+            'nPuertas' => 'required|numeric|in:2,3,4,5',
+
+        ];
+
+        $mensajes = [
+            'descripcion.required' => 'La descripción es obligatoria',
+            'foto.required' => 'La foto es obligatoria.',
+            'foto.image' => 'El archivo debe ser una imagen.',
+            'foto.mimes' => 'El archivo debe ser de tipo JPEG, PNG, JPG, GIF o SVG.',
+            'foto.max' => 'El tamaño máximo del archivo es de 2 MB.',
+            'precio.required' => 'El precio es obligatorio.',
+            'precio.numeric' => 'El precio debe ser un número.',
+            'precio.regex' => 'El precio debe tener un formato válido (máximo de 6 dígitos enteros y hasta 2 decimales después del punto).',
+            'marca.required' => 'La marca es obligatoria',
+            'modelo.required' => 'El modelo es obligatorio',
+            'color.required' => 'El color es obligatorio',
+            'combustible.required' => 'El combustible es obligatorio',
+            'cilindrada.required' => 'El precio es obligatorio.',
+            'cilindrada.numeric' => 'El precio debe ser un número.',
+            'cilindrada.regex' => 'La cilindrada debe tener un formato válido (máximo de 6 dígitos enteros y hasta 2 decimales después del punto).',
+            'potencia.required' => 'El precio es obligatorio.',
+            'potencia.numeric' => 'El precio debe ser un número.',
+            'potencia.regex' => 'La potencia debe tener un formato válido (máximo de 6 dígitos enteros y hasta 2 decimales después del punto).',
+            'nPuertas.required' => 'El número de puertas es obligatorio.',
+            'nPuertas.numeric' => 'El número de puertas debe ser un número.',
+            'nPuertas.in' => 'El número de puertas debe ser 2, 3, 4 o 5.',
+        ];
+
+        $validaciones = Validator::make($request->all(), $reglas, $mensajes);
+
+        if ($validaciones->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validaciones)
+                ->withInput();
+        }
 
         $producto = new Producto();
         $producto->descripcion = $request->descripcion;
@@ -65,6 +112,54 @@ class CochesController extends Controller
 
     public function editarCoche(Request $request)
     {
+
+        $reglas = [
+            'descripcion' => 'required|max:255',
+            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'precio' => ['required', 'numeric', 'regex:/^\d{1,6}(\.\d{1,2})?$/'],
+            'marca' => 'required|max:255',
+            'modelo' => 'required|max:255',
+            'color' => 'required|max:255',
+            'combustible' => 'required|max:255',
+            'cilindrada' => ['required', 'numeric', 'regex:/^\d{1,6}(\.\d{1,2})?$/'],
+            'potencia' => ['required', 'numeric', 'regex:/^\d{1,6}(\.\d{1,2})?$/'],
+            'nPuertas' => 'required|numeric|in:2,3,4,5',
+
+        ];
+
+        $mensajes = [
+            'descripcion.required' => 'La descripción es obligatoria',
+            'foto.required' => 'La foto es obligatoria.',
+            'foto.image' => 'El archivo debe ser una imagen.',
+            'foto.mimes' => 'El archivo debe ser de tipo JPEG, PNG, JPG, GIF o SVG.',
+            'foto.max' => 'El tamaño máximo del archivo es de 2 MB.',
+            'precio.required' => 'El precio es obligatorio.',
+            'precio.numeric' => 'El precio debe ser un número.',
+            'precio.regex' => 'El precio debe tener un formato válido (máximo de 6 dígitos enteros y hasta 2 decimales después del punto).',
+            'marca.required' => 'La marca es obligatoria',
+            'modelo.required' => 'El modelo es obligatorio',
+            'color.required' => 'El color es obligatorio',
+            'combustible.required' => 'El combustible es obligatorio',
+            'cilindrada.required' => 'El precio es obligatorio.',
+            'cilindrada.numeric' => 'El precio debe ser un número.',
+            'cilindrada.regex' => 'La cilindrada debe tener un formato válido (máximo de 6 dígitos enteros y hasta 2 decimales después del punto).',
+            'potencia.required' => 'El precio es obligatorio.',
+            'potencia.numeric' => 'El precio debe ser un número.',
+            'potencia.regex' => 'La potencia debe tener un formato válido (máximo de 6 dígitos enteros y hasta 2 decimales después del punto).',
+            'nPuertas.required' => 'El número de puertas es obligatorio.',
+            'nPuertas.numeric' => 'El número de puertas debe ser un número.',
+            'nPuertas.in' => 'El número de puertas debe ser 2, 3, 4 o 5.',
+        ];
+
+        $validaciones = Validator::make($request->all(), $reglas, $mensajes);
+
+        if ($validaciones->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validaciones)
+                ->withInput();
+        }
+
         $coche = Coche::findOrFail($request->id);
         $producto = $coche->producto;
         $producto->descripcion = $request->descripcion;

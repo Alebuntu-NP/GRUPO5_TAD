@@ -6,12 +6,41 @@ use App\Models\Accesorio;
 use App\Models\Producto;
 use App\Models\Producto_categoria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class AccesoriosController extends Controller
 {
 
     public function crearAccesorio(Request $request)
     {
+
+        $reglas = [
+            'nombre' => 'required|max:255',
+            'descripcion' => 'required|max:255',
+            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'precio' => ['required', 'numeric', 'regex:/^\d{1,6}(\.\d{1,2})?$/']
+        ];
+
+        $mensajes = [
+            'nombre.required' => 'El nombre es obligatorio',
+            'descripcion.required' => 'La descripción es obligatoria',
+            'foto.required' => 'La foto es obligatoria.',
+            'foto.image' => 'El archivo debe ser una imagen.',
+            'foto.mimes' => 'El archivo debe ser de tipo JPEG, PNG, JPG, GIF o SVG.',
+            'foto.max' => 'El tamaño máximo del archivo es de 2 MB.',
+            'precio.required' => 'El precio es obligatorio.',
+            'precio.numeric' => 'El precio debe ser un número.',
+            'precio.regex' => 'El precio debe tener un formato válido (máximo de 6 dígitos enteros y hasta 2 decimales después del punto).',
+        ];
+
+        $validaciones = Validator::make($request->all(), $reglas, $mensajes);
+
+        if ($validaciones->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validaciones)
+                ->withInput();
+        }
 
         $producto = new Producto();
         $producto->descripcion = $request->descripcion;
@@ -56,6 +85,33 @@ class AccesoriosController extends Controller
 
     public function editarAccesorio(Request $request)
     {
+
+        $reglas = [
+            'descripcion' => 'required|max:255',
+            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'precio' => ['required', 'numeric', 'regex:/^\d{1,6}(\.\d{1,2})?$/']
+        ];
+
+        $mensajes = [
+            'descripcion.required' => 'La descripción es obligatoria',
+            'foto.required' => 'La foto es obligatoria.',
+            'foto.image' => 'El archivo debe ser una imagen.',
+            'foto.mimes' => 'El archivo debe ser de tipo JPEG, PNG, JPG, GIF o SVG.',
+            'foto.max' => 'El tamaño máximo del archivo es de 2 MB.',
+            'precio.required' => 'El precio es obligatorio.',
+            'precio.numeric' => 'El precio debe ser un número.',
+            'precio.regex' => 'El precio debe tener un formato válido (máximo de 6 dígitos enteros y hasta 2 decimales después del punto).',
+        ];
+
+        $validaciones = Validator::make($request->all(), $reglas, $mensajes);
+
+        if ($validaciones->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validaciones)
+                ->withInput();
+        }
+
         $accesorio = Accesorio::findOrFail($request->id);
         $producto = $accesorio->producto;
         $producto->descripcion = $request->descripcion;

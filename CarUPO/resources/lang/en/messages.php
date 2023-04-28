@@ -94,4 +94,5 @@ return [
     "filtradoCategorias" => "Filter by categories",
     "noFiltro" => "No filters",
     "filtrar" => "Filter",
+    "detallesCompra" => "Details of purchase ",
 ];
