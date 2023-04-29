@@ -47,6 +47,7 @@ class CategoriasController extends Controller
         $categoria->delete();
         return app()->make(CategoriasController::class)->callAction('mostrarCategorias', []);
     }
+    
     public function editarCategoria(Request $request)
     {
 
