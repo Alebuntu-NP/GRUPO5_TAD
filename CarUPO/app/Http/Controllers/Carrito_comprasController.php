@@ -58,7 +58,7 @@ class Carrito_comprasController extends Controller
         $linea_carrito->save();
         $mi_carrito->save();
 
-        if ($mi_carrito->precio_total == 0) {
+        if ($linea_carrito->precio_parcial <= 0) {
             $linea_carrito->delete();
         }
         return app()->make(Carrito_comprasController::class)->callAction('mostrarCarrito', []);
