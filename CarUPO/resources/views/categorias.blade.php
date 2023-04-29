@@ -23,17 +23,18 @@
                 <input class="buttonP btn btn-primary m-2" type="submit" value="{{ __('messages.crearCategoria') }}" />
             </div>
         </form>
-        
+
     </div>
     @if ($errors->has('nombre'))
-        <div class="alert alert-danger">
+    <div class="justify-content-center d-flex">
+        <div class="alert alert-danger col-xs-10 col-md-8 col-lg-6 col-xl-6 justify-content-center d-flex">
             {{ $errors->first('nombre') }}
         </div>
-    @endif
-    @if ( sizeof($categorias) < 1 ) 
-    <div class="alert alert-info">
-        <span>{{ __('messages.noCategorias') }}</span>
     </div>
+    @endif
+    @if ( sizeof($categorias) < 1 ) <div class="alert alert-info">
+        <span>{{ __('messages.noCategorias') }}</span>
+</div>
 @else
 
 <div class="table-responsive">
@@ -54,7 +55,7 @@
 
                 <td> <input type="text" name="nombre" value="{{ $categoria->nombre }}">
                     @if ($errors->has('nombre'))
-                        <span>{{ $errors->first('nombre') }}</span>
+                    <span>{{ $errors->first('nombre') }}</span>
                     @endif
                 </td>
                 <td>

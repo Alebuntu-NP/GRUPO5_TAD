@@ -14,6 +14,15 @@
     <div class="justify-content-center d-flex mb-3">
         <h1>{{ __('messages.miPerfil') }}</h1>
     </div>
+
+    @if(message != null)
+    <div class="justify-content-center d-flex mb-3">
+        <div class="alert alert-success" role="alert">
+            {{ message }}
+        </div>
+    </div>
+    @endif
+
     <form action="{{ route('updatePerfil') }}" method="POST">
         @method('PUT')
         @csrf
@@ -62,9 +71,9 @@
             </button>
         </div>
     </form>
+    <a class="btn btn-danger" href="{{ route('updatePass') }}">
+        Cambiar Contraseña
+    </a>
 
-    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-        Cambiar contraseña
-    </button>
 </div>
 @endsection
