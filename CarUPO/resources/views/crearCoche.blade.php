@@ -96,12 +96,13 @@
             </div>
 
             <label for="foto" class="form-label">{{ __('messages.foto') }}</label>
+
             <input type="file" required name="foto" value="{{ old('foto') }}" class="form-control mb-2">
             @if ($errors->has('foto'))
-            <div class="alert alert-danger">
-                {{ $errors->first('foto') }}
-            </div>
-        @endif
+                <div class="alert alert-danger">
+                    {{ $errors->first('foto') }}
+                </div>
+            @endif
             <label for="precio" class="form-label">{{ __('messages.precio') }}</label>
             <input type="number" required name="precio" value="{{ old('precio') }}" placeholder="{{ __('messages.precio') }}" step="0.01"
                 class="form-control mb-2">
@@ -110,6 +111,7 @@
                     {{ $errors->first('precio') }}
                 </div>
             @endif
+
             <div class="justify-content-center d-flex">
                 <button class="buttonP btn btn-primary btn-block m-3" type="submit">
                     {{ __('messages.crearCoche') }}
