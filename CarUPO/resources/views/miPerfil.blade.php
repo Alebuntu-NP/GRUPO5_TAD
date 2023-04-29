@@ -50,7 +50,7 @@
                         <option value="en">{{ __('messages.en') }}</option>
                         @else
                         <option value="es">{{ __('messages.es') }}</option>
-                        <option selected value="Ingles">{{ __('messages.en') }}</option>
+                        <option selected value="en">{{ __('messages.en') }}</option>
                         @endif
                     </select>
                 </td>

@@ -29,7 +29,8 @@
     <table class="table table-striped rounded-2 bg-white">
         <thead>
             <tr class="table-row  text-center align-middle">
-                <th>{{ __('messages.producto') }}</th>
+                <th>{{ __('messages.foto') }}</th>
+                <th>{{ __('messages.nombre') }}</th>
                 <th>{{ __('messages.cantidad') }}</th>
                 <th>{{ __('messages.precioParcial') }}</th>
                 <th>{{ __('messages.acciones') }}</th>
@@ -39,6 +40,14 @@
         <tr class="table-row text-center align-middle">
             <td>
                 <img width="20%" height="20%" src="{{ $linea->producto->foto}}" />
+                
+            </td>
+            <td>
+                @if ($linea->producto->coche != null)
+                {{ $linea->producto->coche->marca}} {{ $linea->producto->coche->modelo}}
+                @elseif ($linea->producto->accesorio != null)
+                {{ $linea->producto->accesorio->nombre}}
+                @endif
             </td>
             <td>{{ $linea->cantidad}}</td>
             <td>{{ $linea->precio_parcial}}€</td>

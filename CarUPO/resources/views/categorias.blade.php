@@ -19,14 +19,21 @@
         <form action="{{ route('addToCategorias') }}" method="POST">
             @csrf {{-- Cláusula para obtener un token de formulario al enviarlo --}}
             <div class="input-group">
-                <input type="text" required name="nombre" placeholder="{{ __('messages.nombre') }}" class="form-control mb-2" autofocus>
+                <input type="text" name="nombre" placeholder="{{ __('messages.nombre') }}" class="form-control mb-2" autofocus>
                 <input class="buttonP btn btn-primary m-2" type="submit" value="{{ __('messages.crearCategoria') }}" />
             </div>
         </form>
+        
     </div>
-    @if ( sizeof($categorias) < 1 ) <div class="alert alert-info">
+    @if ($errors->has('nombre'))
+        <div class="alert alert-danger">
+            {{ $errors->first('nombre') }}
+        </div>
+    @endif
+    @if ( sizeof($categorias) < 1 ) 
+    <div class="alert alert-info">
         <span>{{ __('messages.noCategorias') }}</span>
-</div>
+    </div>
 @else
 
 <div class="table-responsive">
@@ -45,7 +52,11 @@
                 @method('PUT')
                 <input type="hidden" name="id" value="{{ $categoria->id }}">
 
-                <td> <input type="text" name="nombre" value="{{ $categoria->nombre }}"></td>
+                <td> <input type="text" name="nombre" value="{{ $categoria->nombre }}">
+                    @if ($errors->has('nombre'))
+                        <span>{{ $errors->first('nombre') }}</span>
+                    @endif
+                </td>
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic example">
                         <button class="btn btn-warning btn-block" type="submit">
