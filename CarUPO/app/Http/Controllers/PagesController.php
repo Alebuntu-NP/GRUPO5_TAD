@@ -33,4 +33,12 @@ class PagesController extends Controller
     {
         return view('editarAccesorio2');
     }
+    public function verAccesorio()
+    {
+        return view('mostrarAccesorio2');
+    }
+    public function verCoche()
+    {
+        return view('mostrarCoche2');
+    }
 }

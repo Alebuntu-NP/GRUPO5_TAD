@@ -51,20 +51,27 @@
         <form action="{{ route('addToCarrito') }}" method="POST">
             @csrf
             <label>{{ __('messages.cantidad') }}: </label>
-            <input type="number" name="cantidad" value="1" >
+            <input type="number" name="cantidad" value="1">
             @if ($errors->has('cantidad'))
-                <div class="alert alert-danger">
-                    {{ $errors->first('cantidad') }}
-                </div>
+            <div class="alert alert-danger">
+                {{ $errors->first('cantidad') }}
+            </div>
             @endif
             <input type="hidden" name="id" value="{{ $accesorio->fk_producto_id }}">
+            <input type="hidden" name="nombre" value="{{ $accesorio->nombre }}">
+            <input type="hidden" name="foto" value="{{ $accesorio->producto->foto }}">
+            <input type="hidden" name="descripcion" value="{{ $accesorio->producto->descripcion }}">
+            <input type="hidden" name="precio" value="{{ $accesorio->producto->precio }}">
+            <input type="hidden" name="idac" value="{{ $accesorio->id }}">
+            <input type="hidden" name="tipo" value="accesorio">
+
             <button class="buttonP btn btn-danger btn-block" type="submit">
                 {{ __('messages.addCarrito') }}
             </button>
         </form>
-        
+
     </div>
-    
+
     @if (Auth::user()->isAdmin() == false)
     @if(DB::table('favoritos')
     ->join('favorito_productos', 'favoritos.id', '=', 'favorito_productos.fk_favorito_id')
