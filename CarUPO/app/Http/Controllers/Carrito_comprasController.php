@@ -86,6 +86,7 @@ class Carrito_comprasController extends Controller
         //         ->withInput();
         // }
 
+
         $id = Auth::user()->id;
         $producto = Producto::findOrFail($request->id);
 
