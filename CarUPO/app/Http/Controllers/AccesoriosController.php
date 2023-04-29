@@ -79,7 +79,9 @@ class AccesoriosController extends Controller
 
     public function verEditarAccesorio(Request $request)
     {
+
         $accesorio = Accesorio::findOrFail($request->id);
+
         return view('editarAccesorio', @compact('accesorio'));
     }
 
@@ -88,13 +90,12 @@ class AccesoriosController extends Controller
 
         $reglas = [
             'descripcion' => 'required|max:255',
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'precio' => ['required', 'numeric', 'regex:/^\d{1,6}(\.\d{1,2})?$/']
         ];
 
         $mensajes = [
             'descripcion.required' => 'La descripción es obligatoria',
-            'foto.required' => 'La foto es obligatoria.',
             'foto.image' => 'El archivo debe ser una imagen.',
             'foto.mimes' => 'El archivo debe ser de tipo JPEG, PNG, JPG, GIF o SVG.',
             'foto.max' => 'El tamaño máximo del archivo es de 2 MB.',
@@ -107,12 +108,12 @@ class AccesoriosController extends Controller
 
         if ($validaciones->fails()) {
             return redirect()
-                ->back()
+                ->route("editarAccesorio")
                 ->withErrors($validaciones)
                 ->withInput();
         }
 
-        $accesorio = Accesorio::findOrFail($request->id);
+        $accesorio = Accesorio::find($request->id);
         $producto = $accesorio->producto;
         $producto->descripcion = $request->descripcion;
         $nfoto = $_FILES['foto']['name'];

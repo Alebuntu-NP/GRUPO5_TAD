@@ -115,7 +115,7 @@ class CochesController extends Controller
 
         $reglas = [
             'descripcion' => 'required|max:255',
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'precio' => ['required', 'numeric', 'regex:/^\d{1,6}(\.\d{1,2})?$/'],
             'marca' => 'required|max:255',
             'modelo' => 'required|max:255',
@@ -129,7 +129,6 @@ class CochesController extends Controller
 
         $mensajes = [
             'descripcion.required' => 'La descripción es obligatoria',
-            'foto.required' => 'La foto es obligatoria.',
             'foto.image' => 'El archivo debe ser una imagen.',
             'foto.mimes' => 'El archivo debe ser de tipo JPEG, PNG, JPG, GIF o SVG.',
             'foto.max' => 'El tamaño máximo del archivo es de 2 MB.',
@@ -155,7 +154,7 @@ class CochesController extends Controller
 
         if ($validaciones->fails()) {
             return redirect()
-                ->back()
+                ->route("editarCoche")
                 ->withErrors($validaciones)
                 ->withInput();
         }

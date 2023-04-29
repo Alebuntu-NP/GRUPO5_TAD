@@ -104,7 +104,7 @@
             @endif
             @endforeach
         </table>
-        
+
     </div>
     <div class="justify-content-center d-flex">
         <a href="{{route('crearCoche')}}" class="buttonP btn btn-primary m-2">{{ __('messages.addCoche') }}</a>
@@ -183,7 +183,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $producto->coche->marca }} {{ $producto->coche->modelo }} {{ $producto->coche->cilindrada }}</h5>
                     <p class="card-text">{{ $producto->coche->producto->descripcion }}</p>
-                    <p class="card-text"><b>Precio:</b> &nbsp;{{ $producto->precio }} €/hora</p>                    
+                    <p class="card-text"><b>Precio:</b> &nbsp;{{ $producto->precio }} €/hora</p>
                 </div>
                 <div class="card-footer justify-content-center d-flex">
                     <form action="{{ route('verCoche') }}" method="POST">
@@ -223,8 +223,8 @@
     @endif
     @endif
     {{-- Pagination --}}
-        <div class="d-flex justify-content-center mt-3">
+    <div class="d-flex justify-content-center mt-3">
         {{ $productos->links() }}
-        </div>
+    </div>
 </div>
 @endsection

@@ -33,6 +33,10 @@ use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 Route::get('/', [PagesController::class, 'inicio'])->name('inicio');
 Route::get('/crearAccesorio', [PagesController::class, 'crearAccesorio'])->name('crearAccesorio');
 Route::get('/crearCoche', [PagesController::class, 'crearCoche'])->name('crearCoche');
+Route::get('/editarAccesorio', [PagesController::class, 'editarAccesorio'])->name('editarAccesorio');
+Route::get('/editarCoche', [PagesController::class, 'editarCoche'])->name('editarCoche');
+
+
 Route::get('/perfil', [PagesController::class, 'verPerfil'])->name('miPerfil');
 
 
@@ -62,7 +66,7 @@ Route::delete('/delAccesorio', [AccesoriosController::class, 'eliminarAccesorio'
 Route::post('/addCoche', [CochesController::class, 'crearCoche'])->name('addCoche');
 Route::post('/coche', [CochesController::class, 'verMostrarCoche'])->name('verCoche');
 Route::post('/editarCoche', [CochesController::class, 'verEditarCoche'])->name('ver.coche.editar');
-Route::post('/updateCoche', [CochesController::class, 'editarCoche'])->name('editar.coche');
+Route::put('/updateCoche', [CochesController::class, 'editarCoche'])->name('editar.coche');
 Route::post('/borrarCoche', [CochesController::class, 'verBorrarCoche'])->name('ver.coche.borrar');
 Route::delete('/delCoche', [CochesController::class, 'eliminarCoche'])->name('coche.borrar');
 
@@ -103,4 +107,3 @@ Route::get('/usuarios', [UsersController::class, 'mostrarUsuarios'])->name('most
 Route::get('/actualizaPass', [UsersController::class, 'actualizaPass'])->name('updatePass');
 Route::put('/actualizaPerfil', [UsersController::class, 'actualizarPerfil'])->name('updatePerfil');
 Route::put('/actualizaPass', [UsersController::class, 'updatePassword'])->name('updatePassword');
-
