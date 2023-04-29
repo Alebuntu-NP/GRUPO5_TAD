@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -21,5 +22,23 @@ class UsersController extends Controller
         $user->language = $request->language;
         $user->save();
         return app()->make(PagesController::class)->callAction('verPerfil', []);
+    }
+
+    public function actualizaPass()
+    {
+        return view('cambiarPassword');
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $password = $request->password;
+        $passwordCon = $request->password_confirmation;
+        if ($password == $passwordCon) {
+            $user = User::findOrFail($request->id);
+            $user->forceFill([
+                'password' => Hash::make($password),
+            ])->save();
+        }
+        return view('miPerfil');
     }
 }

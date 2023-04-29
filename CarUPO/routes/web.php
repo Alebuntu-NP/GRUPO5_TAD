@@ -14,6 +14,8 @@ use App\Http\Controllers\Linea_carritosController;
 use App\Http\Controllers\Linea_comprasController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\UsersController;
+use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,12 +36,12 @@ Route::get('/crearCoche', [PagesController::class, 'crearCoche'])->name('crearCo
 Route::get('/perfil', [PagesController::class, 'verPerfil'])->name('miPerfil');
 
 
-
-
 // AUTENTIFICACIÓN
 Route::get('/home', function () {
     return view('auth.dashboard');
 })->middleware(['auth', 'verified']);
+
+
 
 //PRODUCTOS
 Route::get('/productos', [ProductosController::class, 'mostrarProductos'])->name('mostrarProductos');
@@ -96,7 +98,9 @@ Route::put('/editCategoria', [CategoriasController::class, 'editarCategoria'])->
 
 
 
-
 //USUARIOS
 Route::get('/usuarios', [UsersController::class, 'mostrarUsuarios'])->name('mostrarUsuarios');
+Route::get('/actualizaPass', [UsersController::class, 'actualizaPass'])->name('updatePass');
 Route::put('/actualizaPerfil', [UsersController::class, 'actualizarPerfil'])->name('updatePerfil');
+Route::put('/actualizaPass', [UsersController::class, 'updatePassword'])->name('updatePassword');
+
