@@ -19,14 +19,14 @@
             @csrf {{-- Cláusula para obtener un token de formulario al enviarlo --}}
             <label for="nombre" class="form-label">{{ __('messages.nombre') }}</label>
             <input type="text" required name="nombre" placeholder="{{ __('messages.nombre') }}" class="form-control mb-2"
-                autofocus>
+                autofocus value="{{ old('nombre') }}">
             @if ($errors->has('nombre'))
                 <div class="alert alert-danger">
                     {{ $errors->first('nombre') }}
                 </div>
             @endif
             <label for="descripcion" class="form-label">{{ __('messages.descripcion') }}</label>
-            <textarea type="text" required name="descripcion" placeholder="{{ __('messages.descripcion') }}"
+            <textarea type="text" required name="descripcion" value="{{ old('descripcion') }}" placeholder="{{ __('messages.descripcion') }}"
                 class="form-control mb-2"></textarea>
             @if ($errors->has('descripcion'))
                 <div class="alert alert-danger">
@@ -47,14 +47,14 @@
             </div>
 
             <label for="foto" class="form-label">{{ __('messages.foto') }}</label>
-            <input type="file" required name="foto" class="form-control mb-2">
+            <input type="file" required name="foto" class="form-control mb-2" value="{{ old('foto') }}">
             @if ($errors->has('foto'))
                 <div class="alert alert-danger">
                     {{ $errors->first('foto') }}
                 </div>
             @endif
             <label for="precio" class="form-label">{{ __('messages.precio') }}</label>
-            <input type="number" required name="precio" placeholder="{{ __('messages.precio') }}" step="0.01"
+            <input type="number" required name="precio" value="{{ old('precio') }}" placeholder="{{ __('messages.precio') }}" step="0.01"
                 class="form-control mb-2">
             @if ($errors->has('precio'))
                 <div class="alert alert-danger">
