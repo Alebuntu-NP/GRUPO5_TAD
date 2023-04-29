@@ -15,14 +15,6 @@
         <h1>{{ __('messages.miPerfil') }}</h1>
     </div>
 
-    @if(message != null)
-    <div class="justify-content-center d-flex mb-3">
-        <div class="alert alert-success" role="alert">
-            {{ message }}
-        </div>
-    </div>
-    @endif
-
     <form action="{{ route('updatePerfil') }}" method="POST">
         @method('PUT')
         @csrf

@@ -19,7 +19,7 @@
         @method('PUT')
         @csrf {{-- Cláusula para obtener un token de formulario al enviarlo --}}
         <label for="nombre" class="form-label">{{ __('messages.nombre') }}</label>
-        <input type="text" required name="nombre" value="{{ $accesorio->nombre }}" placeholder="{{ __('messages.nombre') }}" class="form-control mb-2" autofocus>
+        <input type="text" required name="nombre" value="{{ old('nombre') }}" placeholder="{{ __('messages.nombre') }}" class="form-control mb-2" autofocus>
         @if ($errors->has('nombre'))
         <div class="alert alert-danger">
             {{ $errors->first('nombre') }}
@@ -27,7 +27,7 @@
         @endif
 
         <label for="descripcion" class="form-label">{{ __('messages.descripcion') }}</label>
-        <textarea type="text" required name="descripcion" placeholder="{{ __('messages.descripcion') }}" class="form-control mb-2">{{ $accesorio->producto->descripcion }}</textarea>
+        <textarea type="text" required name="descripcion" placeholder="{{ __('messages.descripcion') }}" class="form-control mb-2">{{ old('descripcion') }}</textarea>
         @if ($errors->has('descripcion'))
         <div class="alert alert-danger">
             {{ $errors->first('descripcion') }}
@@ -36,7 +36,7 @@
         <label for="categorias" class="form-label">{{ __('messages.categorias') }}</label>
         <div class="containerP">
             @foreach (DB::table('categorias')->get() as $categoria)
-            @if(DB::table('producto_categorias')->where('fk_producto_id', '=', $accesorio->fk_producto_id)->where('fk_categoria_id', '=', $categoria->id)
+            @if(DB::table('producto_categorias')->where('fk_producto_id', '=', old('idp'))->where('fk_categoria_id', '=', $categoria->id)
             ->exists())
             <div class="form-check">
                 <input class="form-check-input" name="categorias[]" type="checkbox" value="{{ $categoria->id }}" id="flexCheckChecked" checked>
@@ -54,7 +54,6 @@
             @endif
             @endforeach
         </div>
-
         <label for="foto" class="form-label">{{ __('messages.foto') }}</label>
         <input type="file" name="foto" class="form-control mb-2">
         @if ($errors->has('foto'))
@@ -63,15 +62,15 @@
         </div>
         @endif
         <label for="precio" class="form-label">{{ __('messages.precio') }}</label>
-        <input type="number" required name="precio" value="{{ $accesorio->producto->precio }}" placeholder="{{ __('messages.precio') }}" step="0.01" class="form-control mb-2">
+        <input type="number" required name="precio" value="{{ old('precio') }}" placeholder="{{ __('messages.precio') }}" step="0.01" class="form-control mb-2">
         @if ($errors->has('precio'))
         <div class="alert alert-danger">
             {{ $errors->first('precio') }}
         </div>
         @endif
         <div class="justify-content-center d-flex">
-            <input type="hidden" name="id" value="{{ $accesorio->id }}">
-            <input type="hidden" name="idp" value="{{ $accesorio->producto->id}}">
+            <input type="hidden" name="id" value="{{ old('id') }}">
+            <input type="hidden" name="idp" value="{{ old('idp') }}">
             <button class="buttonP btn btn-primary btn-block m-3" type="submit">
                 {{ __('messages.edAccesorio') }}
             </button>

@@ -54,9 +54,6 @@
                 <input type="hidden" name="id" value="{{ $categoria->id }}">
 
                 <td> <input type="text" name="nombre" value="{{ $categoria->nombre }}">
-                    @if ($errors->has('nombre'))
-                    <span>{{ $errors->first('nombre') }}</span>
-                    @endif
                 </td>
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic example">
