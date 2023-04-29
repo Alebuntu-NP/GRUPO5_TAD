@@ -91,6 +91,7 @@ class Carrito_comprasController extends Controller
 
 
 
+
         $id = Auth::user()->id;
         $producto = Producto::findOrFail($request->id);
 

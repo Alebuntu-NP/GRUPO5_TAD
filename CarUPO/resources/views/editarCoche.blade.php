@@ -1,6 +1,7 @@
 @extends('plantilla')
 @section('titulo', 'INICIO')
 @section('contenido')
+
 @guest
 {{ app()->setLocale('es') }}
 @else
@@ -90,7 +91,14 @@
                     {{ $categoria->nombre }}
                 </label>
             </div>
+            <label for="foto" class="form-label">{{ __('messages.foto') }}</label>
+            <input type="file" name="foto" class="form-control mb-2">
+            @if ($errors->has('foto'))
+                <div class="alert alert-danger">
+                    {{ $errors->first('foto') }}
+                </div>
             @endif
+
             @endforeach
         </div>
         <label for="foto" class="form-label">{{ __('messages.foto') }}</label>
@@ -121,8 +129,16 @@
             <button class="btn btn-danger btn-block" type="submit">
                 {{ __('messages.atras') }}
             </button>
+
         </form>
+        <div class="d-flex justify-content-start mt-5">
+            <form action="{{ route('mostrarProductos') }}" method="GET">
+                @csrf
+                <button class="btn btn-danger btn-block" type="submit">
+                    {{ __('messages.atras') }}
+                </button>
+            </form>
+        </div>
     </div>
-</div>
 
 @endsection
