@@ -106,6 +106,7 @@ class Carrito_comprasController extends Controller
             }
         }
 
+
         $id = Auth::user()->id;
         $producto = Producto::find($request->id);
         $existe_producto_en_carrito = DB::table('carrito_compras')

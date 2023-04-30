@@ -2,7 +2,6 @@
 @section('contenido')
 @guest
 {{ app()->setLocale('es') }}
-
 @else
 @if (Auth::user()->language == 'es')
 {{ app()->setLocale('es') }}
@@ -15,14 +14,11 @@
         <h1>{{ __('messages.miPerfil') }}</h1>
     </div>
 
+
     <form action="{{ route('updatePerfil') }}" method="POST">
         @method('PUT')
         @csrf
         <table class="table m-3 rounded-2 bg-white">
-            <tr class="table-row  text-center align-middle">
-                <td class="fw-bold">{{ __('messages.dni') }}</td>
-                <td>{{ Auth::user()->dni }}</td>
-            </tr>
             <tr class="table-row  text-center align-middle">
                 <td class="fw-bold">{{ __('messages.nombre') }}</td>
                 <td>{{ Auth::user()->name }}</td>
@@ -33,12 +29,23 @@
             </tr>
             <tr class="table-row  text-center align-middle">
                 <td class="fw-bold">{{ __('messages.correo') }}</td>
-                <td><input type="text" name="email" value="{{ Auth::user()->email }}"></td>
+                <td><input type="text" name="email" value="{{ Auth::user()->email }}">
+                    @error('email')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </td>
             </tr>
             <tr class="table-row  text-center align-middle">
                 <td class="fw-bold">{{ __('messages.telefono') }}</td>
                 <td>
                     <input type="text" name="phone" value="{{ Auth::user()->phone }}">
+                    @error('phone')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                     <input type="hidden" name="id" value="{{ Auth::user()->id }}">
                 </td>
             </tr>
@@ -46,7 +53,7 @@
                 <td class="fw-bold">{{ __('messages.idioma') }}</td>
                 <td class="justify-content-center d-flex">
                     <select class="form-select h-50 w-50" name="language" aria-label="Default select example">
-                        @if (Auth::user()->language == "es")
+                        @if (Auth::user()->language == 'es')
                         <option selected value="es">{{ __('messages.es') }}</option>
                         <option value="en">{{ __('messages.en') }}</option>
                         @else
@@ -64,7 +71,7 @@
         </div>
     </form>
     <a class="btn btn-danger" href="{{ route('updatePass') }}">
-        Cambiar Contraseña
+        {{ __('messages.cambiarPass') }}
     </a>
 
 </div>

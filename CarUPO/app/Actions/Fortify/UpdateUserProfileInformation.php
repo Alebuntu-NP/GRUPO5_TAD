@@ -17,9 +17,18 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
      */
     public function update(User $user, array $input): void
     {
+
+        $mensajes = [
+            'name.required' => 'La descripción es obligatoria',
+            'phone.required' => 'El archivo debe ser una imagen.',
+            'phone.regex' => 'El teléfono tiene que ser de entre 9 y 14 números.',
+            'email.required' => 'El correo es obligatorio.',
+            'email.email' => 'El correo es tiene que ser formato x@x.x.',
+        ];
+
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
-
+            'phone' => ['required', 'string', 'regex:/^\+?[1-9]\d{1,14}$/'],
             'email' => [
                 'required',
                 'string',
@@ -27,7 +36,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'max:255',
                 Rule::unique('users')->ignore($user->id),
             ],
-        ])->validateWithBag('updateProfileInformation');
+        ], $mensajes)->validateWithBag('updateProfileInformation');
 
         if ($input['email'] !== $user->email &&
             $user instanceof MustVerifyEmail) {
@@ -35,6 +44,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         } else {
             $user->forceFill([
                 'name' => $input['name'],
+                'phone' => $input['phone'],
                 'email' => $input['email'],
             ])->save();
         }
@@ -49,6 +59,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     {
         $user->forceFill([
             'name' => $input['name'],
+            'phone' => $input['phone'],
             'email' => $input['email'],
             'email_verified_at' => null,
         ])->save();
