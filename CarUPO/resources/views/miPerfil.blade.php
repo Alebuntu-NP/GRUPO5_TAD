@@ -30,22 +30,22 @@
             <tr class="table-row  text-center align-middle">
                 <td class="fw-bold">{{ __('messages.correo') }}</td>
                 <td><input type="text" name="email" value="{{ Auth::user()->email }}">
-                    @error('email')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
+                    @if ($errors->has('email'))
+                    <div class="alert alert-danger mt-2">
+                        {{ $errors->first('email') }}
+                    </div>
+                    @endif
                 </td>
             </tr>
             <tr class="table-row  text-center align-middle">
                 <td class="fw-bold">{{ __('messages.telefono') }}</td>
                 <td>
                     <input type="text" name="phone" value="{{ Auth::user()->phone }}">
-                    @error('phone')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
+                    @if ($errors->has('phone'))
+                    <div class="alert alert-danger mt-2">
+                        {{ $errors->first('phone') }}
+                    </div>
+                    @endif
                     <input type="hidden" name="id" value="{{ Auth::user()->id }}">
                 </td>
             </tr>

@@ -33,8 +33,6 @@ use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 Route::get('/', [PagesController::class, 'inicio'])->name('inicio');
 Route::get('/crearAccesorio', [PagesController::class, 'crearAccesorio'])->name('crearAccesorio');
 Route::get('/crearCoche', [PagesController::class, 'crearCoche'])->name('crearCoche');
-
-
 Route::get('/perfil', [PagesController::class, 'verPerfil'])->name('miPerfil');
 
 

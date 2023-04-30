@@ -18,9 +18,8 @@ class UsersController extends Controller
 
     public function actualizarPerfil(Request $request)
     {
-
         $reglas = [
-            'phone' => ['required', 'string', 'regex:/^\+?[1-9]\d{1,14}$/'],
+            'phone' => ['required', 'string', 'regex:/[6|7][0-9]{8}/'],
             'email' => [
                 'required',
                 'string',
@@ -31,12 +30,16 @@ class UsersController extends Controller
 
         $mensajes = [
             'phone.required' => 'El archivo debe ser una imagen.',
-            'phone.regex' => 'El teléfono tiene que ser de entre 9 y 14 números.',
+            'phone.regex' => 'El teléfono tiene que ser un número de 9 cifras que empiece por 6 o 7.',
             'email.required' => 'El correo es obligatorio.',
             'email.email' => 'El correo es tiene que ser formato x@x.x.',
         ];
 
-        Validator::make($request->all(), $reglas, $mensajes)->validate();
+        $validaciones = Validator::make($request->all(), $reglas, $mensajes);
+
+        if ($validaciones->fails()) {
+            return redirect()->route('miPerfil')->withErrors($validaciones)->withInput();
+        }
 
         $user = User::findOrFail($request->id);
         $user->phone = $request->phone;
