@@ -27,6 +27,7 @@ return [
     "pass" => "Contraseña",
     "remember" => "Recordar contraseña",
     "olvidarPass" => "¿Has olvidado tu contraseña?",
+    "cambiarPass" => "Cambiar contraseña",
     "favoritos" => "Favoritos",
     "categorias" => "Categorías",
     "misFavs" => "Mis favoritos",
