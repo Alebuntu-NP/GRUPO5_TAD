@@ -92,14 +92,7 @@
                     {{ $categoria->nombre }}
                 </label>
             </div>
-            <label for="foto" class="form-label">{{ __('messages.foto') }}</label>
-            <input type="file" name="foto" class="form-control mb-2">
-            @if ($errors->has('foto'))
-                <div class="alert alert-danger">
-                    {{ $errors->first('foto') }}
-                </div>
             @endif
-
             @endforeach
         </div>
         <label for="foto" class="form-label">{{ __('messages.foto') }}</label>
@@ -144,4 +137,4 @@
         </div>
     </div>
 
-@endsection
+    @endsection
