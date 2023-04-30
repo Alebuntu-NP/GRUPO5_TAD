@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(FavoritosSeeder::class);
         $this->call(CocheSeeder::class);
         $this->call(AccesorioSeeder::class);
+        $this->call(CategoriasSeeder::class);
     }
 }

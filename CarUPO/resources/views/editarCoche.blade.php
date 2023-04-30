@@ -77,7 +77,8 @@
         <label for="categorias" class="form-label">{{ __('messages.categorias') }}</label>
         <div class="containerP">
             @foreach (DB::table('categorias')->get() as $categoria)
-            @if (DB::table('producto_categorias')->where('fk_producto_id', '=', $coche->fk_producto_id)->where('fk_categoria_id', '=', $categoria->id)->exists())
+            @if(DB::table('producto_categorias')->where('fk_producto_id', '=', $coche->fk_producto_id)->where('fk_categoria_id', '=', $categoria->id)
+            ->exists())
             <div class="form-check">
                 <input class="form-check-input" name="categorias[]" type="checkbox" value="{{ $categoria->id }}" id="flexCheckChecked" checked>
                 <label class="form-check-label" for="flexCheckChecked">
@@ -115,6 +116,8 @@
             {{ $errors->first('precio') }}
         </div>
         @endif
+
+
         <div class="justify-content-center d-flex">
             <input type="hidden" name="id" value="{{ $coche->id }}">
             <input type="hidden" name="idp" value="{{ $coche->producto->id }}">
