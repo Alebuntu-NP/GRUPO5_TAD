@@ -10,6 +10,7 @@ use App\Models\Linea_carrito;
 use App\Models\Compra;
 use App\Models\Linea_compra;
 use App\Models\Producto;
+use App\Rules\Calendar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -58,42 +59,55 @@ class Carrito_comprasController extends Controller
         $linea_carrito->save();
         $mi_carrito->save();
 
-        if ($linea_carrito->precio_parcial <= 0) {
+        if ($mi_carrito->precio_total == 0) {
             $linea_carrito->delete();
         }
         return app()->make(Carrito_comprasController::class)->callAction('mostrarCarrito', []);
     }
+
+
     public function addToCarrito(Request $request)
     {
-
-        $reglas = [
-            'cantidad' => 'required|integer|min:1|max:8',
-        ];
-
-        $mensajes = [
-            'cantidad.required' => 'El campo número es obligatorio.',
-            'cantidad.integer' => 'El campo número debe ser un número entero.',
-            'cantidad.min' => 'El campo número debe ser mayor o igual a 1.',
-            'cantidad.max' => 'El campo número debe ser menor o igual a 8.',
-        ];
-        $validaciones = Validator::make($request->all(), $reglas, $mensajes);
-
+        
         if ($request->tipo == "coche") {
+            $inactiveDays  = ['2023-05-02', '2023-05-04', '2023-05-06'];
+
+            $reglas = [
+                'cantidad' => 'required|integer|min:1|max:8',
+                'fecha' => ['required', new Calendar($inactiveDays)],
+            ];
+
+            $mensajes = [
+                'cantidad.required' => 'El campo número es obligatorio.',
+                'cantidad.integer' => 'El campo número debe ser un número entero.',
+                'cantidad.min' => 'El campo número debe ser mayor o igual a 1.',
+                'cantidad.max' => 'El campo número debe ser menor o igual a 8.',
+                'fecha.required' => 'El campo número es obligatorio.',
+            ];
+            $validaciones = Validator::make($request->all(), $reglas, $mensajes);
             if ($validaciones->fails()) {
-                return redirect()->route("getCoche")->withErrors($validaciones)->withInput();
+                return redirect()->route('getCoche', ['id' => $request->id])->withErrors($validaciones)->withInput();
             }
         } else if ($request->tipo == "accesorio") {
+
+            $reglas = [
+                'cantidad' => 'required|integer|min:1|max:8',
+            ];
+
+            $mensajes = [
+                'cantidad.required' => 'El campo número es obligatorio.',
+                'cantidad.integer' => 'El campo número debe ser un número entero.',
+                'cantidad.min' => 'El campo número debe ser mayor o igual a 1.',
+                'cantidad.max' => 'El campo número debe ser menor o igual a 8.',
+            ];
+            $validaciones = Validator::make($request->all(), $reglas, $mensajes);
             if ($validaciones->fails()) {
-                return redirect()->route("getAccesorio")->withErrors($validaciones)->withInput();
+                return redirect()->route("getAccesorio", ['id' => $request->id])->withErrors($validaciones)->withInput();
             }
         }
 
-
-
-
         $id = Auth::user()->id;
         $producto = Producto::findOrFail($request->id);
-
         $existe_producto_en_carrito = DB::table('carrito_compras')
             ->join('linea_carritos', 'carrito_compras.id', '=', 'linea_carritos.fk_carrito_id')
             ->where('linea_carritos.fk_producto_id', '=', $producto->id)
