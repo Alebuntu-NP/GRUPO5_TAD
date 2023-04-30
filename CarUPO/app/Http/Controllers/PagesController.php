@@ -20,10 +20,6 @@ class PagesController extends Controller
     {
         return view('crearCoche');
     }
-    public function editarCoche()
-    {
-        return view('editarCoche2');
-    }
 
     public function crearAccesorio()
     {
@@ -32,13 +28,5 @@ class PagesController extends Controller
     public function editarAccesorio()
     {
         return view('editarAccesorio2');
-    }
-    public function verAccesorio()
-    {
-        return view('mostrarAccesorio2');
-    }
-    public function verCoche()
-    {
-        return view('mostrarCoche2');
     }
 }
