@@ -18,7 +18,6 @@
         <table class="table table-striped rounded-2 bg-white">
             <thead>
                 <tr class="table-row text-center align-middle">
-                    <th>{{ __('messages.dni') }}</th>
                     <th>{{ __('messages.nombre') }}</th>
                     <th>{{ __('messages.apellidos') }}</th>
                     <th>{{ __('messages.correo') }}</th>
@@ -27,7 +26,6 @@
             </thead>
             @foreach ($usuarios as $usuario)
             <tr class="table-row text-center align-middle">
-                <td>{{ $usuario->dni}}</td>
                 <td>{{ $usuario->name}}</td>
                 <td>{{ $usuario->surname}}</td>
                 <td>{{ $usuario->email}}</td>

@@ -20,7 +20,6 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'dni' => $this->faker->unique()->regexify('/\d{8}[A-Z]/'),
             'name' => $this->faker->name(),
             'surname' => $this->faker->lastName(),
             'email' => $this->faker->unique()->safeEmail(),

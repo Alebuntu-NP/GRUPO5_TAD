@@ -32,7 +32,7 @@
 
         @foreach ($compras as $compra)
         <tr class="table-row text-center align-middle">
-            <td>{{ $compra->user->dni}}</td>
+            <td>{{ $compra->user->name}} {{ $compra->user->surname}}</td>
             <td>{{ $compra->fecha }}</td>
             <td>{{ $compra->precio_total }}</td>
             <td>{{ $compra->estado }}</td>
