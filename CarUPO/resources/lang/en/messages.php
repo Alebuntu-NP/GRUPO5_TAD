@@ -27,6 +27,7 @@ return [
     "pass" => "Password",
     "remember" => "Remember password",
     "olvidarPass" => "Forgot your password?",
+    "cambiarPass" => "Change password",
     "favoritos" => "Favorites",
     "categorias" => "Categories",
     "misFavs" => "My favorites","noCarrito" => "There are no products in the shopping cart",
