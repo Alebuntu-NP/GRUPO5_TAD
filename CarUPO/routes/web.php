@@ -33,7 +33,6 @@ use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 Route::get('/', [PagesController::class, 'inicio'])->name('inicio');
 Route::get('/crearAccesorio', [PagesController::class, 'crearAccesorio'])->name('crearAccesorio');
 Route::get('/crearCoche', [PagesController::class, 'crearCoche'])->name('crearCoche');
-Route::get('/editarAccesorio', [PagesController::class, 'editarAccesorio'])->name('editarAccesorio');
 
 
 Route::get('/perfil', [PagesController::class, 'verPerfil'])->name('miPerfil');
@@ -54,6 +53,7 @@ Route::get('/productosFiltrados', [ProductosController::class, 'filtrarProductos
 
 //ACCESORIOS
 Route::get('/accesorio', [AccesoriosController::class, 'verMostrarAccesorio'])->name('verAccesorio');
+Route::get('/editarAccesorio', [AccesoriosController::class, 'verEditarAccesorio'])->name('ver.accesorio.editar');
 Route::post('/addAccesorio', [AccesoriosController::class, 'crearAccesorio'])->name('addAccesorio');
 Route::post('/accesorio', [AccesoriosController::class, 'verMostrarAccesorio'])->name('verAccesorio');
 Route::post('/editarAccesorio', [AccesoriosController::class, 'verEditarAccesorio'])->name('ver.accesorio.editar');

@@ -25,8 +25,4 @@ class PagesController extends Controller
     {
         return view('crearAccesorio');
     }
-    public function editarAccesorio()
-    {
-        return view('editarAccesorio2');
-    }
 }
