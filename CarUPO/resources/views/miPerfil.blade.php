@@ -68,6 +68,7 @@
             <button class="buttonP btn btn-primary btn-block m-3" type="submit">
                 {{ __('messages.acUser') }}
             </button>
+
         </div>
     </form>
     <a class="btn btn-danger" href="{{ route('updatePass') }}">

@@ -20,7 +20,6 @@ class UsersController extends Controller
     {
 
         $reglas = [
-            'name' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'regex:/^\+?[1-9]\d{1,14}$/'],
             'email' => [
                 'required',
@@ -31,7 +30,6 @@ class UsersController extends Controller
         ];
 
         $mensajes = [
-            'name.required' => 'La descripción es obligatoria',
             'phone.required' => 'El archivo debe ser una imagen.',
             'phone.regex' => 'El teléfono tiene que ser de entre 9 y 14 números.',
             'email.required' => 'El correo es obligatorio.',
