@@ -20,10 +20,6 @@ class PagesController extends Controller
     {
         return view('crearCoche');
     }
-    public function editarCoche()
-    {
-        return view('editarCoche2');
-    }
 
     public function crearAccesorio()
     {

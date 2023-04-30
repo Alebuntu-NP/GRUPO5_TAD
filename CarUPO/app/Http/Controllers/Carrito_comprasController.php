@@ -69,6 +69,7 @@ class Carrito_comprasController extends Controller
     public function addToCarrito(Request $request)
     {        
         if ($request->tipo == "coche") {
+
             $inactiveDays  = ['2023-05-02', '2023-05-04', '2023-05-06'];
 
             $reglas = [
@@ -81,7 +82,7 @@ class Carrito_comprasController extends Controller
                 'cantidad.integer' => 'El campo número debe ser un número entero.',
                 'cantidad.min' => 'El campo número debe ser mayor o igual a 1.',
                 'cantidad.max' => 'El campo número debe ser menor o igual a 8.',
-                'fecha.required' => 'El campo número es obligatorio.',
+                'fecha.required' => 'El campo fecha es obligatorio.',
             ];
             $validaciones = Validator::make($request->all(), $reglas, $mensajes);
             if ($validaciones->fails()) {
@@ -120,6 +121,9 @@ class Carrito_comprasController extends Controller
             $linea_carrito->fk_carrito_id = $mi_carrito->id;
             $linea_carrito->cantidad = $request->cantidad;
             $linea_carrito->precio_parcial = $request->cantidad * $producto->precio;
+            if ($request->tipo == "coche") {
+                $linea_carrito->fecha_reserva = $request->fecha;
+            }
             $linea_carrito->save();
             $mi_carrito->precio_total = $mi_carrito->precio_total + $linea_carrito->precio_parcial;
             $mi_carrito->save();

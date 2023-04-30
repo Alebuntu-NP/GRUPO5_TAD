@@ -124,7 +124,6 @@ class CochesController extends Controller
             'cilindrada' => ['required', 'numeric', 'regex:/^\d{1,6}(\.\d{1,2})?$/'],
             'potencia' => ['required', 'numeric', 'regex:/^\d{1,6}(\.\d{1,2})?$/'],
             'nPuertas' => 'required|numeric|in:2,3,4,5',
-
         ];
 
         $mensajes = [
@@ -154,7 +153,7 @@ class CochesController extends Controller
 
         if ($validaciones->fails()) {
             return redirect()
-                ->route("editarCoche")
+                ->route("ver.coche.editar", ['id' => $request->id])
                 ->withErrors($validaciones)
                 ->withInput();
         }
