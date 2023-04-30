@@ -108,7 +108,7 @@ class AccesoriosController extends Controller
 
         if ($validaciones->fails()) {
             return redirect()
-                ->route("editarAccesorio")
+                ->route("ver.accesorio.editar", ['id' => $request->id])
                 ->withErrors($validaciones)
                 ->withInput();
         }
