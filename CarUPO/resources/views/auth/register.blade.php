@@ -84,10 +84,11 @@
                         </div>
                         <div class="form-group row mb-3">
                             <label for="language" class="col-md-4 col-form-label text-md-right">{{ __('messages.idioma') }}</label>
-
                             <div class="col-md-6">
-                                <input id="language" type="language" class="form-control @error('language') is-invalid @enderror" name="language" required autocomplete="language">
-
+                                <select class="form-select" name="language" id="language" aria-label="Default select example" required>
+                                    <option selected value="es">{{ __('messages.es') }}</option>
+                                    <option value="en">{{ __('messages.en') }}</option>
+                                </select>
                                 @error('language')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
