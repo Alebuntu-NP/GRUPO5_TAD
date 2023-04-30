@@ -100,8 +100,8 @@ class CochesController extends Controller
 
     public function verMostrarCoche(Request $request)
     {
-        $coche = Coche::findOrFail($request->id);
-        return view('mostrarCoche2', @compact('coche'));
+        $coche = Coche::find($request->id);
+        return view('mostrarCoche', @compact('coche'));
     }
 
     public function verEditarCoche(Request $request)

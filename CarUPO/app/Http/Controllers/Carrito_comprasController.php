@@ -59,7 +59,7 @@ class Carrito_comprasController extends Controller
         $linea_carrito->save();
         $mi_carrito->save();
 
-        if ($mi_carrito->precio_total == 0) {
+        if ($linea_carrito->precio_parcial <= 0) {
             $linea_carrito->delete();
         }
         return app()->make(Carrito_comprasController::class)->callAction('mostrarCarrito', []);
@@ -67,8 +67,7 @@ class Carrito_comprasController extends Controller
 
 
     public function addToCarrito(Request $request)
-    {
-        
+    {        
         if ($request->tipo == "coche") {
             $inactiveDays  = ['2023-05-02', '2023-05-04', '2023-05-06'];
 
@@ -86,7 +85,7 @@ class Carrito_comprasController extends Controller
             ];
             $validaciones = Validator::make($request->all(), $reglas, $mensajes);
             if ($validaciones->fails()) {
-                return redirect()->route('getCoche', ['id' => $request->id])->withErrors($validaciones)->withInput();
+                return redirect()->route('verCoche', ['id' => $request->id])->withErrors($validaciones)->withInput();
             }
         } else if ($request->tipo == "accesorio") {
 
@@ -102,12 +101,12 @@ class Carrito_comprasController extends Controller
             ];
             $validaciones = Validator::make($request->all(), $reglas, $mensajes);
             if ($validaciones->fails()) {
-                return redirect()->route("getAccesorio", ['id' => $request->id])->withErrors($validaciones)->withInput();
+                return redirect()->route('verAccesorio', ['id' => $request->id])->withErrors($validaciones)->withInput();
             }
         }
 
         $id = Auth::user()->id;
-        $producto = Producto::findOrFail($request->id);
+        $producto = Producto::find($request->id);
         $existe_producto_en_carrito = DB::table('carrito_compras')
             ->join('linea_carritos', 'carrito_compras.id', '=', 'linea_carritos.fk_carrito_id')
             ->where('linea_carritos.fk_producto_id', '=', $producto->id)
@@ -115,7 +114,7 @@ class Carrito_comprasController extends Controller
             ->exists();
 
         if (!$existe_producto_en_carrito) {
-            $mi_carrito = Carrito_compra::findOrFail($id);
+            $mi_carrito = Carrito_compra::find($id);
             $linea_carrito = new Linea_carrito();
             $linea_carrito->fk_producto_id = $producto->id;
             $linea_carrito->fk_carrito_id = $mi_carrito->id;

@@ -35,8 +35,6 @@ Route::get('/crearAccesorio', [PagesController::class, 'crearAccesorio'])->name(
 Route::get('/crearCoche', [PagesController::class, 'crearCoche'])->name('crearCoche');
 Route::get('/editarAccesorio', [PagesController::class, 'editarAccesorio'])->name('editarAccesorio');
 Route::get('/editarCoche', [PagesController::class, 'editarCoche'])->name('editarCoche');
-Route::get('/getAccesorio', [PagesController::class, 'verAccesorio'])->name('getAccesorio');
-Route::get('/getCoche', [PagesController::class, 'verCoche'])->name('getCoche');
 
 
 Route::get('/perfil', [PagesController::class, 'verPerfil'])->name('miPerfil');
@@ -66,6 +64,7 @@ Route::delete('/delAccesorio', [AccesoriosController::class, 'eliminarAccesorio'
 
 
 //COCHES
+Route::get('/coche', [CochesController::class, 'verMostrarCoche'])->name('verCoche');
 Route::post('/addCoche', [CochesController::class, 'crearCoche'])->name('addCoche');
 Route::post('/coche', [CochesController::class, 'verMostrarCoche'])->name('verCoche');
 Route::post('/editarCoche', [CochesController::class, 'verEditarCoche'])->name('ver.coche.editar');

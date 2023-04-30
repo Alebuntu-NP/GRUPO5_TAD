@@ -73,7 +73,7 @@ class AccesoriosController extends Controller
 
     public function verMostrarAccesorio(Request $request)
     {
-        $accesorio = Accesorio::findOrFail($request->id);
+        $accesorio = Accesorio::find($request->id);
         return view('mostrarAccesorio', @compact('accesorio'));
     }
 
