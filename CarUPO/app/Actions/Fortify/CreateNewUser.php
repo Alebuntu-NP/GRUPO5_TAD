@@ -21,11 +21,22 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input): User
     {
+
+        $mensajes = [
+            'name.required' => 'La descripción es obligatoria',
+            'surname.required' => 'La foto es obligatoria.',
+            'phone.required' => 'El archivo debe ser una imagen.',
+            'phone.regex' => 'El teléfono tiene que ser de entre 9 y 14 números.',
+            'email.required' => 'El correo es obligatorio.',
+            'email.email' => 'El correo es tiene que ser formato x@x.x.',
+            'language.required' => 'El idioma es obligatorio.',
+            'language.in' => 'El idioma tiene que ser en (Inglés) o es (Español).',
+        ];
+
         Validator::make($input, [
-            'dni' => ['required', 'string'],
             'name' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string'],
-            'phone' => ['required', 'string'],
+            'phone' => ['required', 'string', 'regex:/^\+?[1-9]\d{1,14}$/'],
             'email' => [
                 'required',
                 'string',
@@ -34,12 +45,11 @@ class CreateNewUser implements CreatesNewUsers
                 Rule::unique(User::class),
             ],
             'password' => $this->passwordRules(),
-            'language' => ['required', 'string'],
-        ])->validate();
+            'language' => ['required', 'string','in:es,en'],
+        ], $mensajes)->validate();
 
         // Create user
         $user = User::create([
-            'dni' => $input['dni'],
             'name' => $input['name'],
             'surname' => $input['surname'],
             'phone' => $input['phone'],

@@ -20,10 +20,6 @@
         @csrf
         <table class="table m-3 rounded-2 bg-white">
             <tr class="table-row  text-center align-middle">
-                <td class="fw-bold">{{ __('messages.dni') }}</td>
-                <td>{{ Auth::user()->dni }}</td>
-            </tr>
-            <tr class="table-row  text-center align-middle">
                 <td class="fw-bold">{{ __('messages.nombre') }}</td>
                 <td>{{ Auth::user()->name }}</td>
             </tr>
