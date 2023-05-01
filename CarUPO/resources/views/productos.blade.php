@@ -220,11 +220,12 @@
         @endif
         @endforeach
     </div>
-    @endif
-    @endif
     {{-- Pagination --}}
     <div class="d-flex justify-content-center mt-3">
         {{ $productos->links() }}
     </div>
+    @endif
+    
+    @endif
 </div>
 @endsection

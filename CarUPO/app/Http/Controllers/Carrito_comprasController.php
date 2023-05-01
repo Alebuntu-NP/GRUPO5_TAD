@@ -151,6 +151,7 @@ class Carrito_comprasController extends Controller
             $linea_compra->precio_parcial = $linea_carrito->precio_parcial;
             $linea_compra->created_at = $linea_carrito->created_at;
             $linea_compra->updated_at = $linea_carrito->updated_at;
+            $linea_compra->fecha_reserva = $linea_carrito->fecha_reserva;
             $linea_compra->save();
         }
 
