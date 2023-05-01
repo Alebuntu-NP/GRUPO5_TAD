@@ -16,20 +16,17 @@ class ProductosController extends Controller
     public function filtrarProductos(Request $request)
     {
         $todosP = Producto::paginate(8);
-        $productos = collect();
         if ($request->categoria == 0) {
             $productos = $todosP;
-        } else {            
-            foreach ($todosP as $product) {
-                $categorias = $product->productos_categorias;
-                foreach ($categorias as $cat) {                               
-                    if ($cat->categoria->id == $request->categoria) {
-                        $productos->push($product); 
-                    }
-                }            
-            }
+        } else {
+            $productos =
+                Producto::join('producto_categorias', 'productos.id', '=', 'producto_categorias.fk_producto_id')
+                ->join('categorias', 'producto_categorias.fk_categoria_id', '=', 'categorias.id')
+                ->where('categorias.id', '=', $request->categoria)
+                ->select('productos.*')
+                ->paginate(8);
         }
-        
+
         return view('productos', @compact('productos'));
     }
 }

@@ -70,7 +70,10 @@ class Carrito_comprasController extends Controller
     {        
         if ($request->tipo == "coche") {
 
-            $inactiveDays  = ['2023-05-02', '2023-05-04', '2023-05-06'];
+            $fechas = Linea_compra::where('fk_producto_id', $request->id)
+            ->pluck('fecha_reserva')
+            ->unique();
+            $inactiveDays = $fechas->toArray();
 
             $reglas = [
                 'cantidad' => 'required|integer|min:1|max:8',
@@ -151,6 +154,7 @@ class Carrito_comprasController extends Controller
             $linea_compra->precio_parcial = $linea_carrito->precio_parcial;
             $linea_compra->created_at = $linea_carrito->created_at;
             $linea_compra->updated_at = $linea_carrito->updated_at;
+            $linea_compra->fecha_reserva = $linea_carrito->fecha_reserva;
             $linea_compra->save();
         }
 
