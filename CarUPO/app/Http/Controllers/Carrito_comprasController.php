@@ -32,16 +32,17 @@ class Carrito_comprasController extends Controller
 
     public function aumentarLineaCarrito(Request $request)
     {
-
         $id = Auth::user()->id;
         $mi_carrito = Carrito_compra::findOrFail($id);
         $linea_carrito = Linea_carrito::findOrFail($request->id);
 
-        $linea_carrito->cantidad +=  1;
-        $mi_carrito->precio_total += $linea_carrito->producto->precio;
-        $linea_carrito->precio_parcial += $linea_carrito->producto->precio;
-        $linea_carrito->save();
-        $mi_carrito->save();
+        if ($linea_carrito->cantidad < 8) {
+            $linea_carrito->cantidad +=  1;
+            $mi_carrito->precio_total += $linea_carrito->producto->precio;
+            $linea_carrito->precio_parcial += $linea_carrito->producto->precio;
+            $linea_carrito->save();
+            $mi_carrito->save();
+        }
 
         return app()->make(Carrito_comprasController::class)->callAction('mostrarCarrito', []);
     }
@@ -67,12 +68,12 @@ class Carrito_comprasController extends Controller
 
 
     public function addToCarrito(Request $request)
-    {        
+    {
         if ($request->tipo == "coche") {
 
             $fechas = Linea_compra::where('fk_producto_id', $request->id)
-            ->pluck('fecha_reserva')
-            ->unique();
+                ->pluck('fecha_reserva')
+                ->unique();
             $inactiveDays = $fechas->toArray();
 
             $reglas = [
