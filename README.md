@@ -16,6 +16,15 @@
 * Para arrancar ejecutamos el comando: php artisan serve
 * Ademas el comando: npm run dev
 
+
+## CONFIGURACIÓN CORREO
+MAIL_MAILER=smtp
+MAIL_HOST=sandbox.smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=ebe09365c68a38
+MAIL_PASSWORD=3cf05ccadeec49
+MAIL_ENCRYPTION=tls
+
 ## USUARIOS
 
 ### Usuario administrador
