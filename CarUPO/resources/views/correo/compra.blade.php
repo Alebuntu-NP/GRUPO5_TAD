@@ -22,5 +22,5 @@
     </tr>
 </table>
 
-<h1>{{ __('messages.precioTotalz') }}: {{ $compra->precio_total}}€</h1>
+<h1>{{ __('messages.precioTotal') }}: {{ $compra->precio_total}}€</h1>
 @endforeach
