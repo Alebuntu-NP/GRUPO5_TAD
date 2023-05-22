@@ -61,7 +61,9 @@ class AccesoriosController extends Controller
         $accesorio->nombre = $request->nombre;
         $accesorio->fk_producto_id = $producto->id;
         $accesorio->save();
-        return app()->make(ProductosController::class)->callAction('mostrarProductos', []);
+        $productos = Producto::paginate(8);
+        $success = "Accesorio creado correctamente.";
+        return view('productos', compact('productos', "success"));
     }
 
 
@@ -144,7 +146,9 @@ class AccesoriosController extends Controller
 
         $accesorio->nombre = $request->nombre;
         $accesorio->save();
-        return app()->make(ProductosController::class)->callAction('mostrarProductos', []);
+        $productos = Producto::paginate(8);
+        $success = "Accesorio editado correctamente.";
+        return view('productos', compact('productos', "success"));
     }
 
     public function eliminarAccesorio(Request $request)
@@ -162,8 +166,10 @@ class AccesoriosController extends Controller
             return redirect()->back()->with('error', 'No se puede eliminar el accesorio porque está asociada a favoritos.');
         }
 
-        $producto->delete();
         $accesorio->delete();
-        return app()->make(ProductosController::class)->callAction('mostrarProductos', []);
+        $producto->delete();
+        $productos = Producto::paginate(8);
+        $success = "Accesorio eliminado correctamente.";
+        return view('productos', compact('productos', "success"));
     }
 }

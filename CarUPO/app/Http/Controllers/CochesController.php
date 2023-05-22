@@ -89,7 +89,9 @@ class CochesController extends Controller
         $coche->nPuertas = $request->nPuertas;
         $coche->fk_producto_id = $producto->id;
         $coche->save();
-        return app()->make(ProductosController::class)->callAction('mostrarProductos', []);
+        $productos = Producto::paginate(8);
+        $success = "Coche creado correctamente.";
+        return view('productos', compact('productos', "success"));
     }
 
     public function verBorrarCoche(Request $request)
@@ -194,7 +196,9 @@ class CochesController extends Controller
         $coche->nPuertas = $request->nPuertas;
         $coche->fk_producto_id = $producto->id;
         $coche->save();
-        return app()->make(ProductosController::class)->callAction('mostrarProductos', []);
+        $productos = Producto::paginate(8);
+        $success = "Coche editado correctamente.";
+        return view('productos', compact('productos', "success"));
     }
     public function eliminarCoche(Request $request)
     {
@@ -210,8 +214,11 @@ class CochesController extends Controller
         if ($producto->favoritos_productos->count() > 0) {
             return redirect()->back()->with('error', 'No se puede eliminar el coche porque está asociada a favoritos.');
         }
-        $producto->delete();
         $coche->delete();
-        return app()->make(ProductosController::class)->callAction('mostrarProductos', []);
+        $producto->delete();
+
+        $productos = Producto::paginate(8);
+        $success = "Coche eliminado correctamente.";
+        return view('productos', compact('productos', "success"));
     }
 }

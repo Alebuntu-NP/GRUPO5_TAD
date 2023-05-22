@@ -11,15 +11,22 @@
 @endif
 @endguest
 <div class="container-lg my-3 col-xs-10 col-md-8 col-lg-8 col-xl-8">
+
     @if(session('error'))
     <div class="alert alert-danger">
         {{ session('error') }}
+    </div>
+    @endif
+    @if(isset($success))
+    <div class="alert alert-success">
+        {{ $success }}
     </div>
     @endif
     <div class="justify-content-center d-flex mb-3">
         <h1>{{ __('messages.lisCategorias') }}</h1>
 
     </div>
+
     <div class="justify-content-center d-flex">
         <form action="{{ route('addToCategorias') }}" method="POST">
             @csrf {{-- Cláusula para obtener un token de formulario al enviarlo --}}
@@ -30,6 +37,7 @@
         </form>
 
     </div>
+
     @if ($errors->has('nombre'))
     <div class="justify-content-center d-flex">
         <div class="alert alert-danger col-xs-10 col-md-8 col-lg-6 col-xl-6 justify-content-center d-flex">

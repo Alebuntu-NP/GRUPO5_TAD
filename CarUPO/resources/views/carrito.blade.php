@@ -10,11 +10,16 @@
 {{ app()->setLocale('en') }}
 @endif
 @endguest
+
 <div class="container-lg my-3 col-xs-10 col-sm-10 col-md-8 col-lg-8 col-xl-8">
     <div class="justify-content-center d-flex mb-3">
         <h1>{{ __('messages.carrito') }}</h1>
     </div>
-
+    @if(isset($success))
+    <div class="alert alert-success">
+        {{ $success }}
+    </div>
+    @endif
     @if ( sizeof( $mi_carrito->lineas_de_carrito) < 1 ) <div class="alert alert-info">
         <span>{{ __('messages.noCarrito') }}</span>
 </div>
@@ -40,7 +45,7 @@
         <tr class="table-row text-center align-middle">
             <td>
                 <img width="20%" height="20%" src="{{ $linea->producto->foto}}" />
-                
+
             </td>
             <td>
                 @if ($linea->producto->coche != null)

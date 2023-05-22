@@ -46,7 +46,7 @@ class UsersController extends Controller
         $user->email = $request->email;
         $user->language = $request->language;
         $user->save();
-        return app()->make(PagesController::class)->callAction('verPerfil', []);
+        return redirect()->route('miPerfil')->with('success', '¡Perfil actualizado correctamente!');
     }
 
     public function actualizaPass()
@@ -64,6 +64,6 @@ class UsersController extends Controller
                 'password' => Hash::make($password),
             ])->save();
         }
-        return view('miPerfil');
+        return redirect()->route('miPerfil')->with('success', '¡Contraseña actualizada correctamente!');
     }
 }

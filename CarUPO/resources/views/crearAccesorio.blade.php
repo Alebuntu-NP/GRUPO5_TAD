@@ -66,25 +66,7 @@
                     {{ __('messages.crearAccesorio') }}
                 </button>
             </div>
-            <label for="foto" class="form-label">{{ __('messages.foto') }}</label>
-            <input type="file" required name="foto" class="form-control mb-2">
-            @if ($errors->has('foto'))
-                <div class="alert alert-danger">
-                    {{ $errors->first('foto') }}
-                </div>
-            @endif
-            <label for="precio" class="form-label">{{ __('messages.precio') }}</label>
-            <input type="number" required name="precio" placeholder="{{ __('messages.precio') }}" step="0.01" class="form-control mb-2">
-            @if ($errors->has('precio'))
-                <div class="alert alert-danger">
-                    {{ $errors->first('precio') }}
-                </div>
-            @endif   
-            <div class="justify-content-center d-flex">
-                <button class="buttonP btn btn-primary btn-block m-3" type="submit">
-                    {{ __('messages.crearAccesorio') }}
-                </button>
-            </div>
+
         </form>
         <div class="d-flex justify-content-start mt-5">
             <form action="{{ route('mostrarProductos') }}" method="GET">

@@ -38,7 +38,11 @@ class CategoriasController extends Controller
         $categoria = new Categoria();
         $categoria->nombre = $request->nombre;
         $categoria->save();
-        return app()->make(CategoriasController::class)->callAction('mostrarCategorias', []);
+
+        $categorias = Categoria::all();
+        $success = "Categoria creada correctamente.";
+
+        return view('categorias', @compact('categorias', 'success'));
     }
 
 
@@ -50,7 +54,10 @@ class CategoriasController extends Controller
             return redirect()->back()->with('error', 'No se puede eliminar la categoría porque está asociada a productos.');
         }
         $categoria->delete();
-        return app()->make(CategoriasController::class)->callAction('mostrarCategorias', []);
+        $categorias = Categoria::all();
+        $success = "Categoria eliminada correctamente.";
+
+        return view('categorias', @compact('categorias', 'success'));
     }
 
     public function editarCategoria(Request $request)
@@ -76,6 +83,11 @@ class CategoriasController extends Controller
         $categoria = Categoria::findOrFail($request->id);
         $categoria->nombre = $request->nombre;
         $categoria->save();
-        return app()->make(CategoriasController::class)->callAction('mostrarCategorias', []);
+
+
+        $categorias = Categoria::all();
+        $success = "Categoria actualizada correctamente.";
+
+        return view('categorias', @compact('categorias', 'success'));
     }
 }
