@@ -94,8 +94,8 @@
             @endif
 
             <input type="hidden" name="tipo" value="coche">
-            <input type="hidden" name="id" value="{{ $coche->fk_producto_id }}">
-            
+            <input type="hidden" name="id" value="{{ old('id', $coche->fk_producto_id) }}">
+
             <button class="buttonP btn btn-danger btn-block" type="submit">
                 {{ __('messages.addCarrito') }}
             </button>

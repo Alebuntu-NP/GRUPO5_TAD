@@ -42,9 +42,10 @@ class Carrito_comprasController extends Controller
             $linea_carrito->precio_parcial += $linea_carrito->producto->precio;
             $linea_carrito->save();
             $mi_carrito->save();
+            $success = "Aumentando 1 unidad del producto al carrito.";
+            return view('carrito', compact('mi_carrito', 'success'));
         }
-
-        return app()->make(Carrito_comprasController::class)->callAction('mostrarCarrito', []);
+        return view('carrito', compact('mi_carrito'));
     }
 
     public function disminuirLineaCarrito(Request $request)
@@ -62,8 +63,11 @@ class Carrito_comprasController extends Controller
 
         if ($linea_carrito->precio_parcial <= 0) {
             $linea_carrito->delete();
+            $success = "Producto quitado del carrito.";
+        } else {
+            $success = "Restando 1 unidad del producto al carrito.";
         }
-        return app()->make(Carrito_comprasController::class)->callAction('mostrarCarrito', []);
+        return view('carrito', compact('mi_carrito', 'success'));
     }
 
 
@@ -132,6 +136,8 @@ class Carrito_comprasController extends Controller
             $linea_carrito->save();
             $mi_carrito->precio_total = $mi_carrito->precio_total + $linea_carrito->precio_parcial;
             $mi_carrito->save();
+            $success = "Producto añadido al carrito.";
+            return view('carrito', compact('mi_carrito', 'success'));
         }
         return app()->make(Carrito_comprasController::class)->callAction('mostrarCarrito', []);
     }
@@ -168,6 +174,8 @@ class Carrito_comprasController extends Controller
         $mi_carrito->precio_total = 0;
         $mi_carrito->save();
 
-        return app()->make(ComprasController::class)->callAction('misCompras', []);
+        $success = "Compra realizada de forma exitosa.";
+        $compras = Compra::paginate(8);
+        return view('misCompras', @compact('compras', 'success'));
     }
 }

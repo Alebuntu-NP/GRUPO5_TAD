@@ -64,6 +64,11 @@
                 {{ __('messages.elCoche') }}
             </button>
         </form>
+        @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+        @endif
     </div>
     <div class="d-flex justify-content-start mt-5">
         <form action="{{ route('mostrarProductos') }}" method="GET">
