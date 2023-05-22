@@ -14,6 +14,11 @@
     <div class="justify-content-center d-flex mb-3">
         <h1>{{ __('messages.historialCompras') }}</h1>
     </div>
+    @if(isset($success))
+    <div class="alert alert-success">
+        {{ $success }}
+    </div>
+    @endif
     @if ( sizeof($compras) < 1 ) <div class="alert alert-info">
         <span>{{ __('messages.noCompras') }}</span>
 </div>

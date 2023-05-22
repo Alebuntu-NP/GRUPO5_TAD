@@ -11,6 +11,7 @@
 @endif
 @endguest
 <div class="container-lg my-3 col-xs-12 col-sm-10 col-md-8 col-lg-8 col-xl-8">
+
     <div class="justify-content-center d-flex mb-3">
         <h1>{{ $accesorio->nombre }}</h1>
     </div>
@@ -30,7 +31,7 @@
             </tr>
         </table>
     </div>
-    
+
     <div class="d-flex justify-content-center">
         <form action="{{ route('accesorio.borrar') }}" method="POST">
             @csrf
@@ -40,6 +41,11 @@
                 {{ __('messages.elAccesorio') }}
             </button>
         </form>
+        @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+        @endif
     </div>
     <div class="d-flex justify-content-start mt-5">
         <form action="{{ route('mostrarProductos') }}" method="GET">

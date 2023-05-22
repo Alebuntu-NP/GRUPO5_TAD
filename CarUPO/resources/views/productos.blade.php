@@ -34,13 +34,17 @@
             </form>
         </div>
     </div>
+    @if(isset($success))
+    <div class="alert alert-success">
+        {{ $success }}
+    </div>
+    @endif
     @if ($productos->isEmpty())
     <div class="alert alert-info">
         <span>{{ __('messages.noProductos') }}</span>
     </div>
     @else
     @if (Auth::user()->isAdmin())
-
     <div class="justify-content-center d-flex mt-5">
         <h3>{{ __('messages.coches') }}</h3>
     </div>
@@ -225,7 +229,7 @@
         {{ $productos->links() }}
     </div>
     @endif
-    
+
     @endif
 </div>
 @endsection
