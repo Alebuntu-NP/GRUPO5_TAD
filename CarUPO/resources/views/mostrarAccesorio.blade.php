@@ -57,9 +57,9 @@
                 {{ $errors->first('cantidad') }}
             </div>
             @endif
-           
+
             <input type="hidden" name="tipo" value="accesorio">
-            <input type="hidden" name="id" value="{{ old('id', $accesorio->id) }}">
+            <input type="hidden" name="id" value="{{ old('id', $accesorio->fk_producto_id) }}">
 
             <button class="buttonP btn btn-danger btn-block" type="submit">
                 {{ __('messages.addCarrito') }}
