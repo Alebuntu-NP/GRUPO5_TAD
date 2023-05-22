@@ -68,12 +68,18 @@
             <button class="buttonP btn btn-primary btn-block m-3" type="submit">
                 {{ __('messages.acUser') }}
             </button>
-
+            <a class="btn btn-danger m-3" href="{{ route('updatePass') }}">
+                {{ __('messages.cambiarPass') }}
+            </a>
         </div>
+
     </form>
-    <a class="btn btn-danger" href="{{ route('updatePass') }}">
-        {{ __('messages.cambiarPass') }}
-    </a>
+    @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
+
 
 </div>
 @endsection
