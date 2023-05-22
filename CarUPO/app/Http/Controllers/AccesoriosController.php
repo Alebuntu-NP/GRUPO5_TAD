@@ -149,7 +149,20 @@ class AccesoriosController extends Controller
 
     public function eliminarAccesorio(Request $request)
     {
+
         $accesorio = Accesorio::findOrFail($request->id);
+        $producto = $accesorio->producto;
+        if ($producto->lineas_de_compra->count() > 0) {
+            return redirect()->back()->with('error', 'No se puede eliminar el accesorio porque está asociado a lineas de compra.');
+        }
+        if ($producto->lineas_de_carrito->count() > 0) {
+            return redirect()->back()->with('error', 'No se puede eliminar el accesorio porque está asociado a lineas de carrito.');
+        }
+        if ($producto->favoritos_productos->count() > 0) {
+            return redirect()->back()->with('error', 'No se puede eliminar el accesorio porque está asociada a favoritos.');
+        }
+
+        $producto->delete();
         $accesorio->delete();
         return app()->make(ProductosController::class)->callAction('mostrarProductos', []);
     }

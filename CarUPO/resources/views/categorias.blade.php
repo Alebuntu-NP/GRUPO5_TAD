@@ -11,6 +11,11 @@
 @endif
 @endguest
 <div class="container-lg my-3 col-xs-10 col-md-8 col-lg-8 col-xl-8">
+    @if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+    @endif
     <div class="justify-content-center d-flex mb-3">
         <h1>{{ __('messages.lisCategorias') }}</h1>
 

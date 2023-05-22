@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categoria;
+use App\Models\Producto_categoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -44,10 +45,14 @@ class CategoriasController extends Controller
     public function removeToCategorias(Request $request)
     {
         $categoria = Categoria::findOrFail($request->id);
+
+        if ($categoria->productos_categorias->count() > 0) {
+            return redirect()->back()->with('error', 'No se puede eliminar la categoría porque está asociada a productos.');
+        }
         $categoria->delete();
         return app()->make(CategoriasController::class)->callAction('mostrarCategorias', []);
     }
-    
+
     public function editarCategoria(Request $request)
     {
 
