@@ -23,10 +23,10 @@ class CreateNewUser implements CreatesNewUsers
     {
 
         $mensajes = [
-            'name.required' => 'La descripción es obligatoria',
-            'surname.required' => 'La foto es obligatoria.',
-            'phone.required' => 'El archivo debe ser una imagen.',
-            'phone.regex' => 'El teléfono tiene que ser de entre 9 y 14 números.',
+            'name.required' => 'El nombre es obligatorio',
+            'surname.required' => 'El apellido es obligatorio.',
+            'phone.required' => 'El teléfono es obligatorio.',
+            'phone.regex' => 'El teléfono tiene que ser un número de 9 cifras que empiece por 6 o 7.',
             'email.required' => 'El correo es obligatorio.',
             'email.email' => 'El correo es tiene que ser formato x@x.x.',
             'language.required' => 'El idioma es obligatorio.',
@@ -36,7 +36,7 @@ class CreateNewUser implements CreatesNewUsers
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string'],
-            'phone' => ['required', 'string', 'regex:/^\+?[1-9]\d{1,14}$/'],
+            'phone' => ['required', 'string', 'regex:/[6|7][0-9]{8}/'],
             'email' => [
                 'required',
                 'string',

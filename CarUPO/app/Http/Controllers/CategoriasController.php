@@ -40,7 +40,7 @@ class CategoriasController extends Controller
         $categoria->save();
 
         $categorias = Categoria::all();
-        $success = "Categoria creada correctamente.";
+        $success = "Categoría creada correctamente.";
 
         return view('categorias', @compact('categorias', 'success'));
     }
@@ -55,7 +55,7 @@ class CategoriasController extends Controller
         }
         $categoria->delete();
         $categorias = Categoria::all();
-        $success = "Categoria eliminada correctamente.";
+        $success = "Categoría eliminada correctamente.";
 
         return view('categorias', @compact('categorias', 'success'));
     }
@@ -86,7 +86,7 @@ class CategoriasController extends Controller
 
 
         $categorias = Categoria::all();
-        $success = "Categoria actualizada correctamente.";
+        $success = "Categoría actualizada correctamente.";
 
         return view('categorias', @compact('categorias', 'success'));
     }

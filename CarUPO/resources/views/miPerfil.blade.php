@@ -14,6 +14,11 @@
         <h1>{{ __('messages.miPerfil') }}</h1>
     </div>
 
+    @if(session('success'))
+    <div class="alert alert-success d-flex justify-content-center w-100">
+        {{ session('success') }}
+    </div>
+    @endif
 
     <form action="{{ route('updatePerfil') }}" method="POST">
         @method('PUT')
@@ -29,13 +34,7 @@
             </tr>
             <tr class="table-row  text-center align-middle">
                 <td class="fw-bold">{{ __('messages.correo') }}</td>
-                <td><input type="text" name="email" value="{{ Auth::user()->email }}">
-                    @if ($errors->has('email'))
-                    <div class="alert alert-danger mt-2">
-                        {{ $errors->first('email') }}
-                    </div>
-                    @endif
-                </td>
+                <td>{{ Auth::user()->email }}</td>
             </tr>
             <tr class="table-row  text-center align-middle">
                 <td class="fw-bold">{{ __('messages.telefono') }}</td>
@@ -74,11 +73,7 @@
         </div>
 
     </form>
-    @if(session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-    @endif
+    
 
 
 </div>
