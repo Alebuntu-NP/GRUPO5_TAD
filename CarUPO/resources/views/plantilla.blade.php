@@ -43,11 +43,14 @@
                         @else
                         {{ app()->setLocale('en') }}
                         @endif
-                        <li class="nav-item justify-content-center d-flex">
-                            <a class="nav-link text-white" href="{{route('mostrarProductos')}}">{{ __('messages.productos') }}</a>
-                        </li>
 
                         @if (Auth::user()->isAdmin())
+                        <li class="nav-item justify-content-center d-flex">
+                            <a class="nav-link text-white" href="{{route('mostrarCoches')}}">{{ __('messages.coches') }}</a>
+                        </li>
+                        <li class="nav-item justify-content-center d-flex">
+                            <a class="nav-link text-white" href="{{route('mostrarAccesorios')}}">{{ __('messages.accesorios') }}</a>
+                        </li>
                         <li class="nav-item justify-content-center d-flex">
                             <a class="nav-link text-white" href="{{route('mostrarUsuarios')}}">{{ __('messages.usuarios') }}</a>
                         </li>
@@ -61,6 +64,9 @@
                             <a class="nav-link text-white" href="{{route('verCategorias')}}">{{ __('messages.categorias') }}</a>
                         </li>
                         @else
+                        <li class="nav-item justify-content-center d-flex">
+                            <a class="nav-link text-white" href="{{route('mostrarProductos')}}">{{ __('messages.productos') }}</a>
+                        </li>
                         <li class="nav-item justify-content-center d-flex">
                             <a class="nav-link text-white" href="{{route('misCompras')}}">{{ __('messages.misCompras') }}</a>
                         </li>                        

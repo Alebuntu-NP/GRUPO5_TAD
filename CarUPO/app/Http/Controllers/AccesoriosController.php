@@ -66,6 +66,27 @@ class AccesoriosController extends Controller
         return view('productos', compact('productos', "success"));
     }
 
+    public function mostrarAccesorios()
+    {
+        $accesorios = Accesorio::paginate(6);
+        return view('listarAccesorios', @compact('accesorios'));
+    }
+
+    public function filtrarAccesorios(Request $request)
+    {
+        $todosA = Accesorio::paginate(6);
+        if ($request->categoria == 0) {
+            $accesorios = $todosA;
+        } else {
+            $accesorios = Accesorio::join('productos', 'accesorios.fk_producto_id', '=', 'productos.id')
+                ->join('producto_categorias', 'productos.id', '=', 'producto_categorias.fk_producto_id')
+                ->join('categorias', 'producto_categorias.fk_categoria_id', '=', 'categorias.id')
+                ->where('categorias.id', '=', $request->categoria)
+                ->select('coches.*')
+                ->paginate(6);
+        }
+        return view('listarAccesorios', @compact('accesorios'));
+    }
 
     public function verBorrarAccesorio(Request $request)
     {

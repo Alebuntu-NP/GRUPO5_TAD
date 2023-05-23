@@ -94,6 +94,29 @@ class CochesController extends Controller
         return view('productos', compact('productos', "success"));
     }
 
+    public function mostrarCoches()
+    {
+        $coches = Coche::paginate(6);
+        return view('listarCoches', @compact('coches'));
+    }
+
+    public function filtrarCoches(Request $request)
+    {
+        $todosC = Coche::paginate(6);
+        if ($request->categoria == 0) {
+            $coches = $todosC;
+        } else {
+            $coches =
+                Coche::join('productos', 'coches.fk_producto_id', '=', 'productos.id')
+                ->join('producto_categorias', 'productos.id', '=', 'producto_categorias.fk_producto_id')
+                ->join('categorias', 'producto_categorias.fk_categoria_id', '=', 'categorias.id')
+                ->where('categorias.id', '=', $request->categoria)
+                ->select('coches.*')
+                ->paginate(6);
+        }
+        return view('listarCoches', @compact('coches'));
+    }
+
     public function verBorrarCoche(Request $request)
     {
         $coche = Coche::findOrFail($request->id);
@@ -200,6 +223,8 @@ class CochesController extends Controller
         $success = "Coche editado correctamente.";
         return view('productos', compact('productos', "success"));
     }
+
+
     public function eliminarCoche(Request $request)
     {
 
