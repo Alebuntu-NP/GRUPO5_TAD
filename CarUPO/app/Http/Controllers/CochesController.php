@@ -89,9 +89,9 @@ class CochesController extends Controller
         $coche->nPuertas = $request->nPuertas;
         $coche->fk_producto_id = $producto->id;
         $coche->save();
-        $productos = Producto::paginate(8);
+        $coches = Coche::paginate(6);
         $success = "Coche creado correctamente.";
-        return view('productos', compact('productos', "success"));
+        return view('listarCoches', compact('coches', "success"));
     }
 
     public function mostrarCoches()
@@ -219,9 +219,9 @@ class CochesController extends Controller
         $coche->nPuertas = $request->nPuertas;
         $coche->fk_producto_id = $producto->id;
         $coche->save();
-        $productos = Producto::paginate(8);
+        $coches = Coche::paginate(6);
         $success = "Coche editado correctamente.";
-        return view('productos', compact('productos', "success"));
+        return view('listarCoches', compact('coches', "success"));
     }
 
 
@@ -230,20 +230,27 @@ class CochesController extends Controller
 
         $coche = Coche::findOrFail($request->id);
         $producto = $coche->producto;
+        $coches = Coche::paginate(6);
         if ($producto->lineas_de_compra->count() > 0) {
-            return redirect()->back()->with('error', 'No se puede eliminar el coche porque está asociado a lineas de compra.');
+            $error = "No se puede eliminar el coche porque está asociado a lineas de compra.";
+            return view('listarCoches', @compact('coches', "error"));
         }
         if ($producto->lineas_de_carrito->count() > 0) {
-            return redirect()->back()->with('error', 'No se puede eliminar el coche porque está asociado a lineas de carrito.');
+            
+            $error = "No se puede eliminar el coche porque está asociado a lineas de carrito.";
+            return view('listarCoches', @compact('coches', "error"));
         }
         if ($producto->favoritos_productos->count() > 0) {
-            return redirect()->back()->with('error', 'No se puede eliminar el coche porque está asociada a favoritos.');
+            $error = "No se puede eliminar el coche porque está asociada a favoritos.";
+            return view('listarCoches', @compact('coches', "error"));
+        }
+        if ($producto->productos_categorias->count() > 0) {
+            $error = "No se puede eliminar el coche porque tiene categorías asociadas.";
+            return view('listarCoches', @compact('coches', "error"));
         }
         $coche->delete();
         $producto->delete();
-
-        $productos = Producto::paginate(8);
         $success = "Coche eliminado correctamente.";
-        return view('productos', compact('productos', "success"));
+        return view('listarCoches', compact('coches', "success"));
     }
 }
