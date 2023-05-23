@@ -51,6 +51,8 @@ Route::get('/productosFiltrados', [ProductosController::class, 'filtrarProductos
 
 //ACCESORIOS
 Route::get('/accesorio', [AccesoriosController::class, 'verMostrarAccesorio'])->name('verAccesorio');
+Route::get('/accesorios', [AccesoriosController::class, 'mostrarAccesorios'])->name('mostrarAccesorios');
+Route::get('/accesoriosFiltrados', [AccesoriosController::class, 'filtrarAccesorios'])->name('filtrarAccesorios');
 Route::get('/editarAccesorio', [AccesoriosController::class, 'verEditarAccesorio'])->name('ver.accesorio.editar');
 Route::post('/addAccesorio', [AccesoriosController::class, 'crearAccesorio'])->name('addAccesorio');
 Route::post('/accesorio', [AccesoriosController::class, 'verMostrarAccesorio'])->name('verAccesorio');
@@ -62,6 +64,8 @@ Route::delete('/delAccesorio', [AccesoriosController::class, 'eliminarAccesorio'
 
 //COCHES
 Route::get('/coche', [CochesController::class, 'verMostrarCoche'])->name('verCoche');
+Route::get('/coches', [CochesController::class, 'mostrarCoches'])->name('mostrarCoches');
+Route::get('/cochesFiltrados', [CochesController::class, 'filtrarCoches'])->name('filtrarCoches');
 Route::get('/editarCoche', [CochesController::class, 'verEditarCoche'])->name('ver.coche.editar');
 Route::post('/addCoche', [CochesController::class, 'crearCoche'])->name('addCoche');
 Route::post('/coche', [CochesController::class, 'verMostrarCoche'])->name('verCoche');
