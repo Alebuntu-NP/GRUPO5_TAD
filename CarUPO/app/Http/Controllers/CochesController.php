@@ -236,7 +236,7 @@ class CochesController extends Controller
             return view('listarCoches', @compact('coches', "error"));
         }
         if ($producto->lineas_de_carrito->count() > 0) {
-            
+
             $error = "No se puede eliminar el coche porque está asociado a lineas de carrito.";
             return view('listarCoches', @compact('coches', "error"));
         }
@@ -250,6 +250,7 @@ class CochesController extends Controller
         }
         $coche->delete();
         $producto->delete();
+        $coches = Coche::paginate(6);
         $success = "Coche eliminado correctamente.";
         return view('listarCoches', compact('coches', "success"));
     }

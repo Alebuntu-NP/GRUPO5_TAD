@@ -201,6 +201,7 @@ class AccesoriosController extends Controller
 
         $accesorio->delete();
         $producto->delete();
+        $accesorios = Accesorio::paginate(6);
         $success = "Accesorio eliminado correctamente.";
         return view('listarAccesorios', compact('accesorios', "success"));
     }
