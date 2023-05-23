@@ -61,9 +61,9 @@ class AccesoriosController extends Controller
         $accesorio->nombre = $request->nombre;
         $accesorio->fk_producto_id = $producto->id;
         $accesorio->save();
-        $productos = Producto::paginate(8);
+        $accesorios = Accesorio::paginate(8);
         $success = "Accesorio creado correctamente.";
-        return view('productos', compact('productos', "success"));
+        return view('listarAccesorios', compact('accesorios', "success"));
     }
 
     public function mostrarAccesorios()
@@ -167,9 +167,9 @@ class AccesoriosController extends Controller
 
         $accesorio->nombre = $request->nombre;
         $accesorio->save();
-        $productos = Producto::paginate(8);
+        $accesorios = Accesorio::paginate(8);
         $success = "Accesorio editado correctamente.";
-        return view('productos', compact('productos', "success"));
+        return view('listarAccesorios', compact('accesorios', "success"));
     }
 
     public function eliminarAccesorio(Request $request)
@@ -177,20 +177,31 @@ class AccesoriosController extends Controller
 
         $accesorio = Accesorio::findOrFail($request->id);
         $producto = $accesorio->producto;
+        $accesorios = Accesorio::paginate(6);
         if ($producto->lineas_de_compra->count() > 0) {
-            return redirect()->back()->with('error', 'No se puede eliminar el accesorio porque está asociado a lineas de compra.');
+            $error = "No se puede eliminar el accesorio porque está asociado a lineas de compra.";
+            return view('listarAccesorios', @compact('accesorios', "error"));
         }
         if ($producto->lineas_de_carrito->count() > 0) {
-            return redirect()->back()->with('error', 'No se puede eliminar el accesorio porque está asociado a lineas de carrito.');
+            $error = "No se puede eliminar el accesorio porque está asociado a lineas de carrito.";
+            return view('listarAccesorios', @compact('accesorios', "error"));
         }
         if ($producto->favoritos_productos->count() > 0) {
-            return redirect()->back()->with('error', 'No se puede eliminar el accesorio porque está asociada a favoritos.');
+            $error = "No se puede eliminar el accesorio porque está asociada a favoritos.";
+            return view('listarAccesorios', @compact('accesorios', "error"));
+        }
+        if ($producto->productos_categorias->count() > 0) {
+            $error = "No se puede eliminar el accesorio porque tiene categorías asociadas.";
+            return view('listarAccesorios', @compact('accesorios', "error"));
+        }
+        if ($producto->productos_categorias->count() > 0) {
+            $error = "No se puede eliminar el accesorio porque tiene categorías asociadas.";
+            return view('listarAccesorios', @compact('accesorios', "error"));
         }
 
         $accesorio->delete();
         $producto->delete();
-        $productos = Producto::paginate(8);
         $success = "Accesorio eliminado correctamente.";
-        return view('productos', compact('productos', "success"));
+        return view('listarAccesorios', compact('accesorios', "success"));
     }
 }

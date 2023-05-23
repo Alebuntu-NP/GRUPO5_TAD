@@ -76,13 +76,25 @@
             </button>
         </div>
     </form>
-    <div class="d-flex justify-content-start mt-5">
-        <form action="{{ route('mostrarProductos') }}" method="GET">
-            @csrf
-            <button class="btn btn-danger btn-block" type="submit">
-                {{ __('messages.atras') }}
-            </button>
-        </form>
-    </div>
+    @if (Auth::user()->isAdmin() == false)
+        <div class="d-flex justify-content-start mt-5">
+            <form action="{{ route('mostrarProductos') }}" method="GET">
+                @csrf
+                <button class="btn btn-danger btn-block" type="submit">
+                    {{ __('messages.atras') }}
+                </button>
+            </form>
+        </div>
+
+        @else
+        <div class="d-flex justify-content-start mt-5">
+            <form action="{{ route('mostrarAccesorios') }}" method="GET">
+                @csrf
+                <button class="btn btn-danger btn-block" type="submit">
+                    {{ __('messages.atras') }}
+                </button>
+            </form>
+        </div>
+        @endif
 </div>
 @endsection
