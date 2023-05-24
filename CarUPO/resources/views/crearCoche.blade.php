@@ -73,8 +73,13 @@
                 </div>
             @endif
             <label for="nPuertas" class="form-label">{{ __('messages.nPuertas') }}</label>
-            <input type="number" required name="nPuertas" value="{{ old('nPuertas') }}" placeholder="{{ __('messages.nPuertas') }}" step="1"
-                class="form-control mb-2">
+            
+            <select required name="nPuertas" class="form-control mb-2">
+                <option value="2" {{ old('nPuertas') == '2' ? 'selected' : '' }}>2</option>
+                <option value="3" {{ old('nPuertas') == '3' ? 'selected' : '' }}>3</option>
+                <option value="5" {{ old('nPuertas') == '5' ? 'selected' : '' }}>5</option>
+            </select>
+
             @if ($errors->has('nPuertas'))
                 <div class="alert alert-danger">
                     {{ $errors->first('nPuertas') }}
@@ -82,7 +87,6 @@
             @endif
             <label for="categorias" class="form-label">{{ __('messages.categoria') }}</label>
 
-            <label for="categorias" class="form-label">Categoria</label>
             <div class="containerP">
                 @foreach (DB::table('categorias')->get() as $categoria)
                     <div class="form-check">
@@ -118,6 +122,7 @@
                 </button>
             </div>
         </form>
+        @if (Auth::user()->isAdmin() == false)
         <div class="d-flex justify-content-start mt-5">
             <form action="{{ route('mostrarProductos') }}" method="GET">
                 @csrf
@@ -126,6 +131,17 @@
                 </button>
             </form>
         </div>
+
+        @else
+        <div class="d-flex justify-content-start mt-5">
+            <form action="{{ route('mostrarCoches') }}" method="GET">
+                @csrf
+                <button class="btn btn-danger btn-block" type="submit">
+                    {{ __('messages.atras') }}
+                </button>
+            </form>
+        </div>
+        @endif
     </div>
 
 @endsection

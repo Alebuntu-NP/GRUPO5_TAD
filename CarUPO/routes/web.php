@@ -54,12 +54,12 @@ Route::get('/accesorio', [AccesoriosController::class, 'verMostrarAccesorio'])->
 Route::get('/accesorios', [AccesoriosController::class, 'mostrarAccesorios'])->name('mostrarAccesorios');
 Route::get('/accesoriosFiltrados', [AccesoriosController::class, 'filtrarAccesorios'])->name('filtrarAccesorios');
 Route::get('/editarAccesorio', [AccesoriosController::class, 'verEditarAccesorio'])->name('ver.accesorio.editar');
-Route::post('/addAccesorio', [AccesoriosController::class, 'crearAccesorio'])->name('addAccesorio');
+Route::post('/accesorios', [AccesoriosController::class, 'crearAccesorio'])->name('addAccesorio');
 Route::post('/accesorio', [AccesoriosController::class, 'verMostrarAccesorio'])->name('verAccesorio');
 Route::post('/editarAccesorio', [AccesoriosController::class, 'verEditarAccesorio'])->name('ver.accesorio.editar');
-Route::put('/updateAccesorio', [AccesoriosController::class, 'editarAccesorio'])->name('editar.accesorio');
+Route::put('/accesorios', [AccesoriosController::class, 'editarAccesorio'])->name('editar.accesorio');
 Route::post('/borrarAccesorio', [AccesoriosController::class, 'verBorrarAccesorio'])->name('ver.accesorio.borrar');
-Route::delete('/delAccesorio', [AccesoriosController::class, 'eliminarAccesorio'])->name('accesorio.borrar');
+Route::delete('/accesorios', [AccesoriosController::class, 'eliminarAccesorio'])->name('accesorio.borrar');
 
 
 //COCHES
@@ -67,12 +67,12 @@ Route::get('/coche', [CochesController::class, 'verMostrarCoche'])->name('verCoc
 Route::get('/coches', [CochesController::class, 'mostrarCoches'])->name('mostrarCoches');
 Route::get('/cochesFiltrados', [CochesController::class, 'filtrarCoches'])->name('filtrarCoches');
 Route::get('/editarCoche', [CochesController::class, 'verEditarCoche'])->name('ver.coche.editar');
-Route::post('/addCoche', [CochesController::class, 'crearCoche'])->name('addCoche');
+Route::post('/coches', [CochesController::class, 'crearCoche'])->name('addCoche');
 Route::post('/coche', [CochesController::class, 'verMostrarCoche'])->name('verCoche');
 Route::post('/editarCoche', [CochesController::class, 'verEditarCoche'])->name('ver.coche.editar');
-Route::put('/updateCoche', [CochesController::class, 'editarCoche'])->name('editar.coche');
+Route::put('/coches', [CochesController::class, 'editarCoche'])->name('editar.coche');
 Route::post('/borrarCoche', [CochesController::class, 'verBorrarCoche'])->name('ver.coche.borrar');
-Route::delete('/delCoche', [CochesController::class, 'eliminarCoche'])->name('coche.borrar');
+Route::delete('/coches', [CochesController::class, 'eliminarCoche'])->name('coche.borrar');
 
 
 //COMPRAS

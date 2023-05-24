@@ -15,7 +15,17 @@
     <div class="justify-content-center d-flex mb-3">
         <h1>{{ __('messages.accesorios') }}</h1>
     </div>
+    @if(isset($success))
+    <div class="alert alert-success">
+        {{ $success }}
+    </div>
+    @endif
 
+    @if(isset($error))
+    <div class="alert alert-danger">
+        {{ $error }}
+    </div>
+    @endif
     <div class="justify-content-center d-flex m-4 ">
         <div>
             <h4>{{ __('messages.filtradoCategorias') }}</h4>

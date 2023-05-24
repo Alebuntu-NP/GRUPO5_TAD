@@ -15,6 +15,17 @@
     <div class="justify-content-center d-flex mb-3">
         <h1>{{ __('messages.coches') }}</h1>
     </div>
+    @if(isset($success))
+    <div class="alert alert-success">
+        {{ $success }}
+    </div>
+    @endif
+
+    @if(isset($error))
+    <div class="alert alert-danger">
+        {{ $error }}
+    </div>
+    @endif
     <div class="justify-content-center d-flex m-4 ">
         <div>
             <h4>{{ __('messages.filtradoCategorias') }}</h4>
@@ -48,6 +59,7 @@
                     <th>{{ __('messages.color') }}</th>
                     <th>{{ __('messages.cilindrada') }}</th>
                     <th>{{ __('messages.potencia') }}</th>
+                    <th>{{ __('messages.nPuertas') }}</th>
                     <th>{{ __('messages.preciohora') }}</th>
                     <th>{{ __('messages.acciones') }}</th>
                 </tr>
@@ -59,6 +71,7 @@
                 <td>{{ $coche->color }}</td>
                 <td>{{ $coche->cilindrada }}</td>
                 <td>{{ $coche->potencia }}</td>
+                <td>{{ $coche->nPuertas }}</td>
                 <td>{{ $coche->producto->precio }}</td>
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic example">
