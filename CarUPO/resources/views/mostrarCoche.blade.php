@@ -54,7 +54,7 @@
     </p>
 
     <div class="mb-3">
-        <img src="{{ old('foto', $coche->producto->foto)}}" class="rounded float-start h-50 w-50" alt="{{ old('marca')}} {{ old('modelo') }} {{ old('color') }}">
+        <img src="{{ old('foto', $coche->producto->foto)}}" class="rounded float-start h-25 w-25" alt="{{ old('marca')}} {{ old('modelo') }} {{ old('color') }}">
     </div>
 
     <div class="d-flex justify-content-right">
